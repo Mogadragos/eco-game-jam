@@ -1,1 +1,4 @@
-class Spot extends Entity {}
+class Spot extends Entity {
+  tower;
+  raduis;
+}

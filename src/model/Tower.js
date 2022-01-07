@@ -1,1 +1,6 @@
-class Tower extends Entity {}
+class Tower extends Entity {
+  range;
+  damage;
+  reloadTime;
+  target;
+}

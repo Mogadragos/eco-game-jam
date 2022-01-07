@@ -1,1 +1,5 @@
-class Enemy extends Entity {}
+class Enemy extends Entity {
+  health;
+  speed;
+  aliveTime;
+}
