@@ -1,4 +1,4 @@
-export default class GameController {
+export class GameController {
   // FPS
   now;
   then;
