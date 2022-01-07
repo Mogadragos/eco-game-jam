@@ -15,7 +15,15 @@
       <button id="btn btnHome"></button>
     </header>
 
-    <div id="ui">
+    <div class="game">
+      <img id="background" src="" />
+      <canvas id="roads"></canvas>
+      <canvas id="spots"></canvas>
+      <canvas id="towers"></canvas>
+      <canvas id="enemies"></canvas>
+    </div>
+
+    <div id="ui" style="display: none">
       <div class="menu">
         <h1>PROTECT THE TURTLES !!</h1>
         <div class="menu-btnContainer">
@@ -32,13 +40,6 @@
           <button class="btn levelBtn" id="btnLevel2">2</button>
           <button class="btn levelBtn" id="btnLevel3">3</button>
         </div>
-      </div>
-
-      <div class="game" style="display: none">
-        <canvas id="background"></canvas>
-        <canvas id="spots"></canvas>
-        <canvas id="towers"></canvas>
-        <canvas id="enemies"></canvas>
       </div>
     </div>
   </body>
