@@ -1,0 +1,1 @@
+class Tower extends Entity {}
