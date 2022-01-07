@@ -1,15 +1,35 @@
 export default class GameController {
+  // FPS
+  now;
+  then;
+  interval;
+  delta;
+
+  // Level
+  level;
+
+  // Entities
+  enemies;
+  towers;
   constructor() {
-    // this.audioController;
-    // this.UIController;
-
+    // FPS
     const fps = 30;
-    this.now;
-    this.then = performance.now();
     this.interval = 1000 / fps;
-    this.delta;
-
+  }
+  setLevel(level) {
+    this.level = level;
+  }
+  start() {
+    this.level.start();
+    this.reset();
     this.play();
+  }
+  reset() {
+    // Now
+    this.then = performance.now();
+    // Entities
+    this.enemies = [];
+    this.towers = [];
   }
   play() {
     this.paused = false;
@@ -28,7 +48,32 @@ export default class GameController {
     if (this.delta > this.interval) {
       this.then = this.now - (this.delta % this.interval);
 
-      // draw
+      this.update();
+      this.render();
+    }
+  }
+
+  /**
+   * Calculate data of each entity
+   */
+  update() {
+    for (const enemy of this.enemies) {
+      enemy.update();
+    }
+    for (const tower of this.towers) {
+      tower.update();
+    }
+  }
+
+  /**
+   * Render each entity
+   */
+  render() {
+    for (const enemy of this.enemies) {
+      enemy.render();
+    }
+    for (const tower of this.towers) {
+      tower.render();
     }
   }
 }
