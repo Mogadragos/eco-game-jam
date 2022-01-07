@@ -15,18 +15,30 @@
       <button id="btn btnHome"></button>
     </header>
 
-    <canvas id="background"></canvas>
     <div id="ui">
       <div class="menu">
-        <button class="btn menuBtn" id="btnPlay">Play</button>
-        <button class="btn menuBtn" id="btnSettings">Settings</button>
-        <button class="btn menuBtn" id="btnCredits">Credits</button>
+        <h1>PROTECT THE TURTLES !!</h1>
+        <div class="menu-btnContainer">
+          <button class="btn menuBtn" id="btnPlay">Play</button>
+          <button class="btn menuBtn" id="btnSettings">Settings</button>
+          <button class="btn menuBtn" id="btnCredits">Credits</button>
+        </div>
       </div>
 
-      <div class="levelSelection" style="display: none">
-        <button class="btn levelDifficulty" id="btnLevel1">1</button>
-        <button class="btn levelDifficulty" id="btnLevel2">2</button>
-        <button class="btn levelDifficulty" id="btnLevel3">3</button>
+      <div class="levelSelection">
+        <h1>Difficulty</h1>
+        <div class="levelSelection-btnContainer">
+          <button class="btn levelBtn" id="btnLevel1">1</button>
+          <button class="btn levelBtn" id="btnLevel2">2</button>
+          <button class="btn levelBtn" id="btnLevel3">3</button>
+        </div>
+      </div>
+
+      <div class="game" style="display: none">
+        <canvas id="background"></canvas>
+        <canvas id="spots"></canvas>
+        <canvas id="towers"></canvas>
+        <canvas id="enemies"></canvas>
       </div>
     </div>
   </body>
