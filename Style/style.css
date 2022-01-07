@@ -30,6 +30,10 @@ body > * {
   transition: 300ms;
   background-color: #ececec;
 }
+#btnMenu {
+  padding: 10px;
+  margin-bottom: 20px;
+}
 
 h1 {
   color: var(--primary);

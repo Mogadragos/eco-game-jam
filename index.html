@@ -8,39 +8,78 @@
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="stylesheet" href="./style/menu.css" />
     <link rel="stylesheet" href="./style/levelSelection.css" />
+    <link rel="stylesheet" href="./style/settings.css" />
+    <link rel="stylesheet" href="./style/credits.css" />
     <link rel="stylesheet" href="./style/variables.css" />
+
+    <script
+      src="https://kit.fontawesome.com/1f48453392.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <header class="header" style="display: none">
-      <button id="btn btnHome"></button>
-    </header>
+    <div id="ui">
+      <!-- Menu -->
+      <div id="menu" style="display: none">
+        <h1>PROTECT THE TURTLES !!</h1>
+        <div class="menu-btnContainer">
+          <button class="btn menuBtn" id="btnPlay" to="levelSelection">
+            Play
+          </button>
+          <button class="btn menuBtn" id="btnSettings" to="settings">
+            Settings
+          </button>
+          <button class="btn menuBtn" id="btnCredits" to="credits">
+            Credits
+          </button>
+        </div>
+      </div>
 
-    <div class="game">
-      <img id="background" src="" />
-      <canvas id="roads"></canvas>
+      <!-- Game -->
+      <div id="levelSelection" style="display: none">
+        <h1>Difficulty</h1>
+        <div class="levelSelection-btnContainer">
+          <button class="btn levelBtn" id="btnLevel1" to="game-1">1</button>
+          <button class="btn levelBtn" id="btnLevel2" to="game-2">2</button>
+          <button class="btn levelBtn" id="btnLevel3" to="game-3">3</button>
+        </div>
+        <button class="btn" id="btnMenu" to="menu">MENU</button>
+      </div>
+
+      <!-- Settings -->
+      <div id="settings">
+        <h1>Paramètres</h1>
+        <div class="settingsContainer">
+          <button class="btn settingsBtn">
+            Musique
+            <i class="fas fa-volume-mute" id="unmute-music"></i>
+            <i class="fas fa-volume-up" id="mute-music"></i>
+          </button>
+          <button class="btn settingsBtn">
+            Bruitages
+            <i class="fas fa-volume-mute" id="unmute-effects"></i>
+            <i class="fas fa-volume-up" id="mute-effects"></i>
+          </button>
+        </div>
+        <button class="btn" id="btnMenu" to="menu">MENU</button>
+      </div>
+
+      <!-- Credits -->
+      <div id="credits" style="display: none">
+        <h1>Credits</h1>
+        <div class="creditsContainer">
+          <h2>Julien CAILLAUD</h2>
+          <h2>Quentin ROBARD</h2>
+        </div>
+        <button class="btn" id="btnMenu" to="menu">MENU</button>
+      </div>
+    </div>
+
+    <div class="game" style="display: none">
+      <canvas id="background"></canvas>
       <canvas id="spots"></canvas>
       <canvas id="towers"></canvas>
       <canvas id="enemies"></canvas>
-    </div>
-
-    <div id="ui" style="display: none">
-      <div class="menu">
-        <h1>PROTECT THE TURTLES !!</h1>
-        <div class="menu-btnContainer">
-          <button class="btn menuBtn" id="btnPlay">Play</button>
-          <button class="btn menuBtn" id="btnSettings">Settings</button>
-          <button class="btn menuBtn" id="btnCredits">Credits</button>
-        </div>
-      </div>
-
-      <div class="levelSelection">
-        <h1>Difficulty</h1>
-        <div class="levelSelection-btnContainer">
-          <button class="btn levelBtn" id="btnLevel1">1</button>
-          <button class="btn levelBtn" id="btnLevel2">2</button>
-          <button class="btn levelBtn" id="btnLevel3">3</button>
-        </div>
-      </div>
     </div>
   </body>
 </html>
