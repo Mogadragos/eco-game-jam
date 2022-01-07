@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROTECT THE TURTLES !!</title>
-    <link href="./Style/variables.css" rel="stylesheet">
-    <link href="./Style/style.css" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/menu.css" />
+    <link rel="stylesheet" href="./style/levelSelection.css" />
+    <link rel="stylesheet" href="./style/variables.css" />
+  </head>
+  <body>
+    <header class="header" style="display: none">
+      <button id="btn btnHome"></button>
+    </header>
+
     <canvas id="background"></canvas>
     <div id="ui">
+      <div class="menu">
+        <button class="btn menuBtn" id="btnPlay">Play</button>
+        <button class="btn menuBtn" id="btnSettings">Settings</button>
+        <button class="btn menuBtn" id="btnCredits">Credits</button>
+      </div>
 
+      <div class="levelSelection" style="display: none">
+        <button class="btn levelDifficulty" id="btnLevel1">1</button>
+        <button class="btn levelDifficulty" id="btnLevel2">2</button>
+        <button class="btn levelDifficulty" id="btnLevel3">3</button>
+      </div>
     </div>
-</body>
+  </body>
 </html>

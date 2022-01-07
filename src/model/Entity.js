@@ -1,4 +1,6 @@
 class Entity {
+  controller;
+
   x;
   y;
   sprite;
