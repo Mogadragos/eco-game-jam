@@ -81,6 +81,24 @@ function getCanvases() {
 
 const audioController = new AudioController();
 
+async function init() {
+  await audioController.init(
+    [
+      {
+        name: "sample",
+        url: "./assets/sample-9s.mp3",
+        sound: true,
+      },
+      {
+        name: "ambient",
+        url: "./assets/skyrim-main-theme-w-mp3-link.mp3",
+        loop: true,
+      },
+    ],
+    "ambient"
+  );
+}
+
 window.onload = () => {
   const canvases = getCanvases();
   resizeCanvases(canvases);
@@ -90,7 +108,7 @@ window.onload = () => {
   const uiController = new UIController(gameController);
 
   uiController.init();
-  audioController.init();
+  init();
 };
 
 if ("serviceWorker" in navigator) {

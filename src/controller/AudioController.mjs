@@ -1,25 +1,59 @@
 export class AudioController {
   musicOn;
   soundOn;
-  musicManager;
-  soundManager;
+
+  audioCtx;
+  soundCtx;
+  tracks;
 
   constructor() {
     this.musicOn = true;
     this.soundOn = true;
 
-    this.audioManager = new Audio();
-    this.soundManager = new Audio();
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    this.audioCtx = new AudioContext();
+    this.audioGain = this.audioCtx.createGain();
+    this.audioGain.connect(this.audioCtx.destination);
+    this.soundCtx = new AudioContext();
+    this.soundGain = this.soundCtx.createGain();
+    this.soundGain.connect(this.soundCtx.destination);
+    this.tracks = {};
   }
 
-  async init(tracks) {
+  async init(tracks, menuMusic) {
+    const btnMusicToggle = document.getElementById("toggleMusic");
+    const btnSoundToggle = document.getElementById("toggleSound");
+
+    btnMusicToggle.onclick = () => {
+      this.toggleMusic();
+    };
+    btnSoundToggle.onclick = () => {
+      this.toggleSound();
+    };
+
     const promises = [];
     for (const track of tracks) {
       promises.push(this.loadTrack(track));
     }
     await Promise.all(promises);
-    this.sources.ambient.play();
-    console.log(this.sources);
+    this.play(menuMusic);
+  }
+
+  play(trackName) {
+    const track = this.tracks[trackName];
+    if (track) {
+      let source;
+      if (track.sound) {
+        source = this.soundCtx.createBufferSource();
+        source.connect(this.soundGain);
+      } else {
+        source = this.audioCtx.createBufferSource();
+        source.connect(this.audioGain);
+      }
+      source.buffer = track.buffer;
+      if (track.loop) source.loop = true;
+      source.start();
+    } else console.warn('[ AudioController ] "' + trackName + '" not found !');
   }
 
   loadTrack(track) {
@@ -34,10 +68,8 @@ export class AudioController {
           this.audioCtx.decodeAudioData(
             request.response,
             (buffer) => {
-              const source = this.audioCtx.createBufferSource();
-              source.buffer = buffer;
-              source.connect(this.audioCtx.destination);
-              this.sources[track.name] = source;
+              track.buffer = buffer;
+              this.tracks[track.name] = track;
               resolve();
             },
             function (e) {
@@ -56,37 +88,31 @@ export class AudioController {
     });
   }
 
-  init() {
-    const btnMusicToggle = document.getElementById("toggleMusic");
-    const btnSoundToggle = document.getElementById("toggleSound");
-
-    btnMusicToggle.onclick = () => {
-      this.toggleMusic();
-    };
-    btnSoundToggle.onclick = () => {
-      this.toggleSound();
-    };
-  }
-
   toggleMusic() {
     this.musicOn = !this.musicOn;
 
-    document.getElementById("music-on").style.display = this.musicOn
-      ? ""
-      : "none";
-    document.getElementById("music-off").style.display = this.musicOn
-      ? "none"
-      : "";
+    if (this.musicOn) {
+      document.getElementById("music-off").style.display = "none";
+      document.getElementById("music-on").style.display = "";
+      this.audioGain.gain.setValueAtTime(1, this.audioCtx.currentTime);
+    } else {
+      document.getElementById("music-on").style.display = "none";
+      document.getElementById("music-off").style.display = "";
+      this.audioGain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+    }
   }
 
   toggleSound() {
     this.soundOn = !this.soundOn;
 
-    document.getElementById("sound-on").style.display = this.soundOn
-      ? ""
-      : "none";
-    document.getElementById("sound-off").style.display = this.soundOn
-      ? "none"
-      : "";
+    if (this.soundOn) {
+      document.getElementById("sound-off").style.display = "none";
+      document.getElementById("sound-on").style.display = "";
+      this.soundGain.gain.setValueAtTime(1, this.soundCtx.currentTime);
+    } else {
+      document.getElementById("sound-on").style.display = "none";
+      document.getElementById("sound-off").style.display = "";
+      this.soundGain.gain.setValueAtTime(0, this.soundCtx.currentTime);
+    }
   }
 }
