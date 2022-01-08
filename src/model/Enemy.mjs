@@ -24,6 +24,13 @@ export class Enemy extends Entity {
   }
 
   update(dt) {
+    if (this.health > 0) {
+      this.health -= 0.5;
+    } else {
+      this.killed = true;
+      return;
+    }
+
     this.aliveTime += dt;
     this.positionTime += dt * this.speed;
     const position = this.road.getPosition(this.positionTime);
@@ -55,13 +62,22 @@ export class Enemy extends Entity {
     this.ctx.closePath();
     this.ctx.stroke();
 
-    let healthBarSize = 60;
+    let healthBarSizeMax = 60;
+    let healthPercent = this.health / this.maxHealth;
+    let healthBarSize = healthBarSizeMax * healthPercent;
+
+    console.log(healthBarSize);
 
     this.ctx.lineWidth = 8;
     this.ctx.beginPath();
-    this.ctx.strokeStyle = "#00FF00";
-    this.ctx.moveTo(this.x - 30, this.y - 40);
-    this.ctx.lineTo(this.x, this.y - 40);
+    this.ctx.strokeStyle =
+      healthPercent > 0.5
+        ? "#00FF00"
+        : healthPercent > 0.2
+        ? "#FFFF00"
+        : "#FF0000";
+    this.ctx.moveTo(this.x - healthBarSizeMax / 2, this.y - 40);
+    this.ctx.lineTo(this.x - healthBarSizeMax / 2 + healthBarSize, this.y - 40);
     this.ctx.closePath();
     this.ctx.stroke();
   }
