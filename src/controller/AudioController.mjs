@@ -12,6 +12,50 @@ export class AudioController {
     this.soundManager = new Audio();
   }
 
+  async init(tracks) {
+    const promises = [];
+    for (const track of tracks) {
+      promises.push(this.loadTrack(track));
+    }
+    await Promise.all(promises);
+    this.sources.ambient.play();
+    console.log(this.sources);
+  }
+
+  loadTrack(track) {
+    return new Promise((resolve) => {
+      var request = new XMLHttpRequest();
+      request.open("GET", track.url, true);
+      request.responseType = "arraybuffer";
+
+      // Decode asynchronously
+      request.onload = () => {
+        if (request.status == 200) {
+          this.audioCtx.decodeAudioData(
+            request.response,
+            (buffer) => {
+              const source = this.audioCtx.createBufferSource();
+              source.buffer = buffer;
+              source.connect(this.audioCtx.destination);
+              this.sources[track.name] = source;
+              resolve();
+            },
+            function (e) {
+              console.log("Error decoding audio data:" + e);
+              resolve();
+            }
+          );
+        } else {
+          console.log(
+            "Audio didn't load successfully; error code:" + request.statusText
+          );
+          resolve();
+        }
+      };
+      request.send();
+    });
+  }
+
   init() {
     const btnMusicToggle = document.getElementById("toggleMusic");
     const btnSoundToggle = document.getElementById("toggleSound");

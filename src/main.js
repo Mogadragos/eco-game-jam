@@ -92,3 +92,7 @@ window.onload = () => {
   uiController.init();
   audioController.init();
 };
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../sw.js");
+}
