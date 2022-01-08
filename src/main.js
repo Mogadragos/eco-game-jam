@@ -6,6 +6,11 @@ const width = 1920,
 const canvases = document.getElementsByTagName("canvas");
 
 function resizeCanvases() {
+  for (const canvas of canvases) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+  return;
   let canvas_width = screen.width;
   let canvas_height = screen.height;
   let ratio = width / height;
