@@ -99,11 +99,11 @@ export const levelsJSON = [
       ],
     ],
     spots: [
-      { x: 10, y: 10 },
-      { x: 20, y: 20 },
-      { x: 30, y: 30 },
-      { x: 40, y: 40 },
-      { x: 50, y: 50 },
+      { x: width / 6.8, y: height / 2.3 },
+      { x: width / 3.5, y: height / 6.5 },
+      { x: width / 2.2, y: height / 4 },
+      { x: width / 1.6, y: height / 1.5 },
+      { x: width / 2.3, y: height / 1.2 },
     ],
     waves: [
       {

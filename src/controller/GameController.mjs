@@ -25,7 +25,7 @@ export class GameController {
 
   constructor(levels, canvases) {
     // FPS
-    const fps = 30;
+    const fps = 60;
     this.interval = 1000 / fps;
 
     this.levels = levels;

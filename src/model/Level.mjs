@@ -28,7 +28,6 @@ export class Level {
 
     document.getElementById("background").src = "./assets/" + this.background;
     const ctxRoads = document.getElementById("roads").getContext("2d");
-    const ctxSpots = document.getElementById("spots").getContext("2d");
 
     ctxRoads.strokeStyle = "#9cec5b";
     ctxRoads.lineWidth = 40;
@@ -51,7 +50,6 @@ export class Level {
     }
 
     for (const spot of this.spots) {
-      console.log(spot);
       spot.render();
     }
   }
