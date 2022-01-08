@@ -1,9 +1,11 @@
 export class GameController {
   // FPS
-  now;
   then;
   interval;
   delta;
+
+  // Execution dt
+  prevUpdate;
 
   // Level
   level;
@@ -29,8 +31,6 @@ export class GameController {
   }
 
   reset() {
-    // Now
-    this.then = performance.now();
     // Entities
     this.enemies = [];
     this.towers = [];
@@ -38,6 +38,7 @@ export class GameController {
 
   play() {
     this.paused = false;
+    this.then = performance.now();
     this.loop();
   }
 
@@ -49,11 +50,11 @@ export class GameController {
     if (this.paused) return;
     requestAnimationFrame(() => this.loop());
 
-    this.now = performance.now();
-    this.delta = this.now - this.then;
+    const now = performance.now();
+    this.delta = now - this.then;
 
     if (this.delta > this.interval) {
-      this.then = this.now - (this.delta % this.interval);
+      this.then = now - (this.delta % this.interval);
 
       this.update();
       this.render();
@@ -64,11 +65,15 @@ export class GameController {
    * Calculate data of each entity
    */
   update() {
+    const dt = this.delta / 1000;
+    const temp_enemies = this.level.update(dt);
+    if (temp_enemies) this.enemies = this.enemies.concat(temp_enemies);
+
     for (const enemy of this.enemies) {
-      enemy.update();
+      enemy.update(dt);
     }
     for (const tower of this.towers) {
-      tower.update();
+      tower.update(dt);
     }
   }
 
