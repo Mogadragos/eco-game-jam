@@ -30,15 +30,6 @@ export class UIController {
       this.pause();
     };
     //#endregion
-
-    window.addEventListener("keydown", (e) => {
-      switch (e.key) {
-        case "Escape":
-          if (this.menuOpened) this.resume();
-          else this.pause();
-          break;
-      }
-    });
   }
 
   initMenu() {
