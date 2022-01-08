@@ -1,0 +1,33 @@
+#game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#game > canvas {
+  position: absolute;
+  width: 100%;
+}
+
+#background {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#hud {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+}
+
+#hud button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 5px;
+}
