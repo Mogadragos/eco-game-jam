@@ -40,33 +40,41 @@ export const levelsJSON = [
       {
         timing: 5,
         enemies: {
+          cooldown: 0.3,
           number: 8,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
+          gold: 5,
         },
       },
       {
         timing: 20,
         enemies: {
+          cooldown: 0.2,
           number: 10,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
+          gold: 5,
         },
       },
       {
         timing: 40,
         enemies: {
+          cooldown: 0.3,
           number: 15,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
+          gold: 5,
         },
       },
       {
         timing: 60,
         enemies: {
+          cooldown: 0.2,
           number: 25,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
+          gold: 5,
         },
       },
     ],
@@ -109,41 +117,50 @@ export const levelsJSON = [
       {
         timing: 5,
         enemies: {
+          cooldown: 0.3,
           number: 8,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
         },
       },
       {
         timing: 20,
         enemies: {
+          cooldown: 0.3,
           number: 10,
           health: 20,
-          speed: 0.15,
+          speed: 0.1,
+          gold: 8,
         },
       },
       {
         timing: 35,
         enemies: {
+          cooldown: 0.18,
           number: 15,
           health: 20,
-          speed: 0.15,
+          speed: 0.1,
+          gold: 8,
         },
       },
       {
         timing: 40,
         enemies: {
+          cooldown: 0.3,
           number: 15,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
+          gold: 5,
         },
       },
       {
         timing: 60,
         enemies: {
+          cooldown: 0.35,
           number: 30,
           health: 20,
-          speed: 0.15,
+          speed: 0.1,
+          gold: 8,
         },
       },
     ],
@@ -186,33 +203,37 @@ export const levelsJSON = [
       {
         timing: 5,
         enemies: {
+          cooldown: 0.3,
           number: 8,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
         },
       },
       {
         timing: 20,
         enemies: {
+          cooldown: 0.3,
           number: 10,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
         },
       },
       {
         timing: 40,
         enemies: {
+          cooldown: 0.3,
           number: 15,
           health: 10,
-          speed: 0.22,
+          speed: 0.15,
         },
       },
       {
         timing: 60,
         enemies: {
+          cooldown: 0.3,
           number: 25,
-          health: 10,
-          speed: 0.22,
+          health: 8,
+          speed: 0.3,
         },
       },
     ],

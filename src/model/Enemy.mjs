@@ -10,12 +10,12 @@ export class Enemy extends Entity {
   hasTurtle;
   killed;
 
-  constructor(ctx, road, sprite, maxHealth) {
+  constructor(ctx, road, sprite, maxHealth, speed) {
     super(ctx, -10, -10, 30, 50, sprite);
     this.maxHealth = maxHealth;
     this.health = maxHealth;
     this.road = road;
-    this.speed = 0.3;
+    this.speed = speed;
     this.aliveTime = 0;
     this.prevPosition = { x: 0, y: 0 };
     this.positionTime = 0;
@@ -24,9 +24,7 @@ export class Enemy extends Entity {
   }
 
   update(dt) {
-    if (this.health > 0) {
-      this.health -= 0.5;
-    } else {
+    if (this.health < 0) {
       this.killed = true;
       return;
     }

@@ -7,6 +7,9 @@ export class Level {
   waves;
 
   enemiesCtx;
+  time;
+
+  cooldown;
 
   constructor(background, roads, spots, waves) {
     this.background = background;
@@ -15,8 +18,10 @@ export class Level {
     this.waves = waves;
 
     this.enemiesCtx = document.getElementById("enemies").getContext("2d");
+    this.time = 0;
 
     this.reset();
+    this.cooldown = 0;
   }
 
   reset() {
@@ -55,10 +60,30 @@ export class Level {
   }
 
   update(dt) {
-    if (this.nbEnemies < 1) {
-      this.nbEnemies++;
-      return new Enemy(this.enemiesCtx, this.roads[0], "", 50);
+    if (this.waves.length) {
+      if (this.time > this.waves[0].timing) {
+        this.cooldown -= dt;
+        if (this.waves[0].enemies.number > 0) {
+          if (this.cooldown <= 0) {
+            this.cooldown = this.waves[0].enemies.cooldown;
+            this.waves[0].enemies.number--;
+
+            return new Enemy(
+              this.enemiesCtx,
+              this.roads[0],
+              "",
+              this.waves[0].enemies.health,
+              this.waves[0].enemies.speed
+            );
+          }
+        } else {
+          this.waves.shift();
+        }
+      }
     }
+
+    this.time += dt;
+
     return;
   }
 }
