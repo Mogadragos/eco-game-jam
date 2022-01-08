@@ -17,7 +17,9 @@ export class GameController {
   towers;
 
   // DOM
+  canvasesDict;
   canvases;
+  dynamicCanvases;
 
   constructor(levels, canvases) {
     // FPS
@@ -26,7 +28,9 @@ export class GameController {
 
     this.levels = levels;
 
-    this.canvases = canvases;
+    this.canvasesDict = canvases;
+    this.canvases = Object.values(canvases);
+    this.dynamicCanvases = [canvases.enemies, canvases.towers];
   }
 
   setLevel(index) {
@@ -35,13 +39,16 @@ export class GameController {
     this.level.init();
   }
 
-  reset() {
+  clearCanvases(canvases) {
     // Canvases
-    for (const id in this.canvases) {
-      const canvas = this.canvases[id];
+    for (const canvas of canvases) {
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
+  }
+
+  reset() {
+    this.clearCanvases(this.canvases);
     // Entities
     this.enemies = [];
     this.towers = [];
@@ -68,6 +75,7 @@ export class GameController {
       this.then = now - (this.delta % this.interval);
 
       this.update();
+      this.clearCanvases(this.dynamicCanvases);
       this.render();
     }
   }
