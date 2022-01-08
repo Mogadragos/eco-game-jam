@@ -1,4 +1,4 @@
-import { Tower } from "../model/Tower.mjs";
+import { TowerWithTarget } from "../model/TowerWithTarget.mjs";
 
 export class GameController {
   // FPS
@@ -54,12 +54,12 @@ export class GameController {
     // Entities
     this.enemies = [];
     this.towers = [
-      new Tower(
+      new TowerWithTarget(
         this,
         this.canvasesDict.towers.getContext("2d"),
         500,
         600,
-        0,
+        300,
         0,
         0,
         []
