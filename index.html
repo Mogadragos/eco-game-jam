@@ -17,15 +17,27 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body onload="load()">
+  <body>
+    <div id="game">
+      <img id="background" src="" />
+      <canvas id="roads"></canvas>
+      <canvas id="spots"></canvas>
+      <canvas id="towers"></canvas>
+      <canvas id="enemies"></canvas>
+    </div>
+
     <div id="ui">
       <!-- Menu -->
       <div id="menu" class="screen">
         <h1>PROTECT THE TURTLES !!</h1>
         <div class="menu-btnContainer">
-          <button class="btn menuBtn" to="levelSelection">Play</button>
-          <button class="btn menuBtn" to="settings">Settings</button>
-          <button class="btn menuBtn" to="credits">Credits</button>
+          <button class="btn navBtn menuBtn" data-to="levelSelection">
+            Play
+          </button>
+          <button class="btn navBtn menuBtn" data-to="settings">
+            Settings
+          </button>
+          <button class="btn navBtn menuBtn" data-to="credits">Credits</button>
         </div>
       </div>
 
@@ -33,17 +45,11 @@
       <div id="levelSelection" class="screen" style="display: none">
         <h1>Difficulty</h1>
         <div class="levelSelection-btnContainer">
-          <button class="btn levelBtn" id="btnLevel1" onclick="startGame(1)">
-            1
-          </button>
-          <button class="btn levelBtn" id="btnLevel2" onclick="startGame(2)">
-            2
-          </button>
-          <button class="btn levelBtn" id="btnLevel3" onclick="startGame(2)">
-            3
-          </button>
+          <button class="btn levelBtn" id="btnLevel1" data-level="0">1</button>
+          <button class="btn levelBtn" id="btnLevel2" data-level="1">2</button>
+          <button class="btn levelBtn" id="btnLevel3" data-level="2">3</button>
         </div>
-        <button class="btn" id="btnMenu" to="menu">MENU</button>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
       </div>
 
       <!-- Settings -->
@@ -61,7 +67,7 @@
             <i class="fas fa-volume-up" id="mute-effects"></i>
           </button>
         </div>
-        <button class="btn" id="btnMenu" to="menu">MENU</button>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
       </div>
 
       <!-- Credits -->
@@ -71,22 +77,10 @@
           <h2>Julien CAILLAUD</h2>
           <h2>Quentin ROBARD</h2>
         </div>
-        <button class="btn" id="btnMenu" to="menu">MENU</button>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
       </div>
     </div>
 
-    <div class="game" class="screen" style="display: none">
-      <img id="background" src="" />
-      <canvas id="roads"></canvas>
-      <canvas id="spots"></canvas>
-      <canvas id="towers"></canvas>
-      <canvas id="enemies"></canvas>
-    </div>
-
     <script type="module" src="./src/main.js"></script>
-    <script
-      type="text/javascript"
-      src="./src/controller/navigation.js"
-    ></script>
   </body>
 </html>
