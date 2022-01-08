@@ -1,6 +1,7 @@
 import { Entity } from "./Entity.mjs";
 
 export class Enemy extends Entity {
+  maxHealth;
   health;
   speed;
   aliveTime;
@@ -9,8 +10,10 @@ export class Enemy extends Entity {
   hasTurtle;
   killed;
 
-  constructor(ctx, road, sprite) {
+  constructor(ctx, road, sprite, maxHealth) {
     super(ctx, -10, -10, 30, 50, sprite);
+    this.maxHealth = maxHealth;
+    this.health = maxHealth;
     this.road = road;
     this.speed = 0.3;
     this.aliveTime = 0;
@@ -39,5 +42,27 @@ export class Enemy extends Entity {
       this.prevPosition.x = this.x = position.x;
       this.prevPosition.y = this.y = position.y;
     }
+  }
+
+  render() {
+    super.render();
+
+    this.ctx.lineWidth = 10;
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = "black";
+    this.ctx.moveTo(this.x - 30, this.y - 40);
+    this.ctx.lineTo(this.x + 30, this.y - 40);
+    this.ctx.closePath();
+    this.ctx.stroke();
+
+    let healthBarSize = 60;
+
+    this.ctx.lineWidth = 8;
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = "#00FF00";
+    this.ctx.moveTo(this.x - 30, this.y - 40);
+    this.ctx.lineTo(this.x, this.y - 40);
+    this.ctx.closePath();
+    this.ctx.stroke();
   }
 }

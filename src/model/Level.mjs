@@ -51,7 +51,7 @@ export class Level {
     this.aliveTime += dt;
     if (this.nbEnemies < 1) {
       this.nbEnemies++;
-      return new Enemy(this.enemiesCtx, this.roads[0], "");
+      return new Enemy(this.enemiesCtx, this.roads[0], "", 50);
     }
     return;
   }
