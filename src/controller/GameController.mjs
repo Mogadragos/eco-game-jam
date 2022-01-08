@@ -4,28 +4,34 @@ export class GameController {
   interval;
   delta;
 
-  // Execution dt
+  // Execution
+  paused;
   prevUpdate;
 
   // Level
+  allLevels;
   level;
 
   // Entities
   enemies;
   towers;
 
-  constructor() {
+  constructor(allLevels) {
     // FPS
     const fps = 30;
     this.interval = 1000 / fps;
+
+    this.allLevels = allLevels;
   }
 
-  setLevel(level) {
-    this.level = level;
+  setLevel(index) {
+    this.level = this.allLevels[index];
+    this.level.init();
+
+    return this;
   }
 
   start() {
-    this.level.start();
     this.reset();
     this.play();
   }

@@ -18,70 +18,69 @@
     ></script>
   </head>
   <body>
-    <div id="ui">
-      <!-- Menu -->
-      <div id="menu" style="display: none">
-        <h1>PROTECT THE TURTLES !!</h1>
-        <div class="menu-btnContainer">
-          <button class="btn menuBtn" id="btnPlay" to="levelSelection">
-            Play
-          </button>
-          <button class="btn menuBtn" id="btnSettings" to="settings">
-            Settings
-          </button>
-          <button class="btn menuBtn" id="btnCredits" to="credits">
-            Credits
-          </button>
-        </div>
-      </div>
-
-      <!-- Game -->
-      <div id="levelSelection" style="display: none">
-        <h1>Difficulty</h1>
-        <div class="levelSelection-btnContainer">
-          <button class="btn levelBtn" id="btnLevel1" to="game-1">1</button>
-          <button class="btn levelBtn" id="btnLevel2" to="game-2">2</button>
-          <button class="btn levelBtn" id="btnLevel3" to="game-3">3</button>
-        </div>
-        <button class="btn" id="btnMenu" to="menu">MENU</button>
-      </div>
-
-      <!-- Settings -->
-      <div id="settings" style="display: none">
-        <h1>Paramètres</h1>
-        <div class="settingsContainer">
-          <button class="btn settingsBtn">
-            Musique
-            <i class="fas fa-volume-mute" id="unmute-music"></i>
-            <i class="fas fa-volume-up" id="mute-music"></i>
-          </button>
-          <button class="btn settingsBtn">
-            Bruitages
-            <i class="fas fa-volume-mute" id="unmute-effects"></i>
-            <i class="fas fa-volume-up" id="mute-effects"></i>
-          </button>
-        </div>
-        <button class="btn" id="btnMenu" to="menu">MENU</button>
-      </div>
-
-      <!-- Credits -->
-      <div id="credits" style="display: none">
-        <h1>Credits</h1>
-        <div class="creditsContainer">
-          <h2>Julien CAILLAUD</h2>
-          <h2>Quentin ROBARD</h2>
-        </div>
-        <button class="btn" id="btnMenu" to="menu">MENU</button>
-      </div>
-    </div>
-
-    <div class="game">
+    <div id="game">
       <img id="background" src="" />
       <canvas id="roads"></canvas>
       <canvas id="spots"></canvas>
       <canvas id="towers"></canvas>
       <canvas id="enemies"></canvas>
     </div>
-    <script type="module" src="src/main.js"></script>
+
+    <div id="ui">
+      <!-- Menu -->
+      <div id="menu" class="screen">
+        <h1>PROTECT THE TURTLES !!</h1>
+        <div class="menu-btnContainer">
+          <button class="btn navBtn menuBtn" data-to="levelSelection">
+            Play
+          </button>
+          <button class="btn navBtn menuBtn" data-to="settings">
+            Settings
+          </button>
+          <button class="btn navBtn menuBtn" data-to="credits">Credits</button>
+        </div>
+      </div>
+
+      <!-- Level selection -->
+      <div id="levelSelection" class="screen" style="display: none">
+        <h1>Difficulty</h1>
+        <div class="levelSelection-btnContainer">
+          <button class="btn levelBtn" id="btnLevel1" data-level="0">1</button>
+          <button class="btn levelBtn" id="btnLevel2" data-level="1">2</button>
+          <button class="btn levelBtn" id="btnLevel3" data-level="2">3</button>
+        </div>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
+      </div>
+
+      <!-- Settings -->
+      <div id="settings" class="screen" style="display: none">
+        <h1>Paramètres</h1>
+        <div class="settingsContainer">
+          <button class="btn settingsBtn" onclick="toggleMusic()">
+            Musique
+            <i class="fas fa-volume-mute" id="unmute-music"></i>
+            <i class="fas fa-volume-up" id="mute-music"></i>
+          </button>
+          <button class="btn settingsBtn" onclick="soundToggle()">
+            Bruitages
+            <i class="fas fa-volume-mute" id="unmute-effects"></i>
+            <i class="fas fa-volume-up" id="mute-effects"></i>
+          </button>
+        </div>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
+      </div>
+
+      <!-- Credits -->
+      <div id="credits" class="screen" style="display: none">
+        <h1>Credits</h1>
+        <div class="creditsContainer">
+          <h2>Julien CAILLAUD</h2>
+          <h2>Quentin ROBARD</h2>
+        </div>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

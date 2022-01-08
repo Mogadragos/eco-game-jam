@@ -16,6 +16,7 @@ export class Entity {
   update() {}
   render() {
     this.ctx.rect(this.x, this.y, 100, 100);
+    this.ctx.closePath();
     this.ctx.fill();
   }
 }

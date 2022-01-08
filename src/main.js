@@ -1,13 +1,12 @@
 import { GameController } from "./controller/GameController.mjs";
+import { UIController } from "./controller/UIController.mjs";
 import { Level } from "./model/Level.mjs";
 import { Road } from "./model/Road.mjs";
 
 const width = 1920,
   height = 1080;
 
-const canvases = document.getElementsByTagName("canvas");
-
-function resizeCanvases() {
+function resizeCanvases(canvases) {
   for (const canvas of canvases) {
     canvas.width = width;
     canvas.height = height;
@@ -26,8 +25,6 @@ function resizeCanvases() {
     canvas.height = canvas_height;
   }
 }
-
-resizeCanvases();
 
 const levels = [];
 initLevels();
@@ -90,15 +87,13 @@ function initLevels() {
   );
 }
 
-const gameController = new GameController();
+const gameController = new GameController(levels);
 
-gameController.setLevel(levels[1]);
+const uiController = new UIController(gameController);
 
-gameController.start();
+window.onload = () => {
+  const canvases = document.getElementsByTagName("canvas");
+  resizeCanvases(canvases);
 
-window.addEventListener("keydown", (e) => {
-  if (e.key == " ") {
-    if (gameController.paused) gameController.play();
-    else gameController.pause();
-  }
-});
+  uiController.init();
+};
