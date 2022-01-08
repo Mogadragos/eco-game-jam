@@ -4,15 +4,17 @@ export class Enemy extends Entity {
   health;
   speed;
   aliveTime;
+  prevPosition;
   positionTime;
   hasTurtle;
   killed;
 
   constructor(ctx, road, sprite) {
-    super(ctx, -10, -10, sprite);
+    super(ctx, -10, -10, 30, 50, sprite);
     this.road = road;
     this.speed = 0.3;
     this.aliveTime = 0;
+    this.prevPosition = { x: 0, y: 0 };
     this.positionTime = 0;
     this.hasTurtle = false;
     this.killed = false;
@@ -30,8 +32,12 @@ export class Enemy extends Entity {
         this.speed = -this.speed;
       }
     } else {
-      this.x = position.x;
-      this.y = position.y;
+      this.rotation = Math.atan2(
+        position.y - this.prevPosition.y,
+        position.x - this.prevPosition.x
+      );
+      this.prevPosition.x = this.x = position.x;
+      this.prevPosition.y = this.y = position.y;
     }
   }
 }
