@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./style/levelSelection.css" />
     <link rel="stylesheet" href="./style/settings.css" />
     <link rel="stylesheet" href="./style/credits.css" />
+    <link rel="stylesheet" href="./style/game.css" />
+    <link rel="stylesheet" href="./style/hud.css" />
     <link rel="stylesheet" href="./style/variables.css" />
 
     <script
@@ -17,8 +19,9 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
-    <div id="game">
+    <div id="game" style="display: none">
       <img id="background" src="" />
       <canvas id="roads"></canvas>
       <canvas id="spots"></canvas>
@@ -27,6 +30,45 @@
     </div>
 
     <div id="ui">
+      <!-- HUD -->
+      <div id="hud" style="display: none">
+        <button class="btn" id="pause">
+          <i class="fas fa-pause"></i>
+        </button>
+
+        <div id="pauseMenu" style="display: none">
+          <button id="resume" class="btn">Continuer</button>
+          <button id="exit" class="btn">Quitter</button>
+        </div>
+
+        <div id="buyMenu" class="hidden sideMenu">
+          <button class="btn">
+            <p>Bénévole 50 <i class="fas fa-coins"></i></p>
+          </button>
+          <button class="btn">
+            <p>Feu de camp 100 <i class="fas fa-coins"></i></p>
+          </button>
+          <button class="btn">
+            <p>Keuf 200 <i class="fas fa-coins"></i></p>
+          </button>
+        </div>
+
+        <div id="upgradeMenu" class="hidden sideMenu">
+          <p>Nom de la tour</p>
+          <ul>
+            <li>Dégats : <span id="damage"></span></li>
+            <li>Vitesse d'attaque : <span id="reloadTime"></span></li>
+            <li>portée : <span id="range"></span></li>
+          </ul>
+          <button class="btn">
+            <p>
+              Améliorer <span id="towerPrice"></span>
+              <i class="fas fa-coins"></i>
+            </p>
+          </button>
+        </div>
+      </div>
+
       <!-- Menu -->
       <div id="menu" class="screen">
         <h1>PROTECT THE TURTLES !!</h1>
