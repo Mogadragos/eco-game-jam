@@ -98,15 +98,23 @@
       <div id="settings" class="screen" style="display: none">
         <h1>Paramètres</h1>
         <div class="settingsContainer">
-          <button class="btn settingsBtn" onclick="toggleMusic()">
+          <button class="btn settingsBtn" id="toggleMusic">
             Musique
-            <i class="fas fa-volume-mute" id="unmute-music"></i>
-            <i class="fas fa-volume-up" id="mute-music"></i>
+            <i class="fas fa-volume-up" id="music-on"></i>
+            <i
+              class="fas fa-volume-mute"
+              id="music-off"
+              style="display: none"
+            ></i>
           </button>
-          <button class="btn settingsBtn" onclick="soundToggle()">
+          <button class="btn settingsBtn" id="toggleSound">
             Bruitages
-            <i class="fas fa-volume-mute" id="unmute-effects"></i>
-            <i class="fas fa-volume-up" id="mute-effects"></i>
+            <i class="fas fa-volume-up" id="sound-on"></i>
+            <i
+              class="fas fa-volume-mute"
+              id="sound-off"
+              style="display: none"
+            ></i>
           </button>
         </div>
         <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
@@ -118,6 +126,7 @@
         <div class="creditsContainer">
           <h2>Julien CAILLAUD</h2>
           <h2>Quentin ROBARD</h2>
+          <h2>Arthur FERRER</h2>
         </div>
         <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
       </div>

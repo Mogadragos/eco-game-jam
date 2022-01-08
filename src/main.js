@@ -1,3 +1,4 @@
+import { AudioController } from "./controller/AudioController.mjs";
 import { GameController } from "./controller/GameController.mjs";
 import { UIController } from "./controller/UIController.mjs";
 import { Level } from "./model/Level.mjs";
@@ -91,9 +92,12 @@ const gameController = new GameController(levels);
 
 const uiController = new UIController(gameController);
 
+const audioController = new AudioController();
+
 window.onload = () => {
   const canvases = document.getElementsByTagName("canvas");
   resizeCanvases(canvases);
 
   uiController.init();
+  audioController.init();
 };
