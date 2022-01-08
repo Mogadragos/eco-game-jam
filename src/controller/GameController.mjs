@@ -1,3 +1,5 @@
+import { Tower } from "../model/Tower.mjs";
+
 export class GameController {
   // FPS
   then;
@@ -51,7 +53,18 @@ export class GameController {
     this.clearCanvases(this.canvases);
     // Entities
     this.enemies = [];
-    this.towers = [];
+    this.towers = [
+      new Tower(
+        this,
+        this.canvasesDict.towers.getContext("2d"),
+        500,
+        600,
+        0,
+        0,
+        0,
+        []
+      ),
+    ];
   }
 
   play() {
