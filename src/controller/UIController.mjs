@@ -44,8 +44,8 @@ export class UIController {
   }
 
   startLevel(index) {
+    this.gameController.setLevel(index);
     this.resume();
-    this.gameController.setLevel(index).start();
   }
 
   pause() {

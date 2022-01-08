@@ -7,7 +7,8 @@ const width = 1920,
   height = 1080;
 
 function resizeCanvases(canvases) {
-  for (const canvas of canvases) {
+  for (const id in canvases) {
+    const canvas = canvases[id];
     canvas.width = width;
     canvas.height = height;
   }
@@ -26,12 +27,9 @@ function resizeCanvases(canvases) {
   }
 }
 
-const levels = [];
-initLevels();
-
-function initLevels() {
-  //Level 1
-  levels.push(
+function genLevels() {
+  return [
+    //Level 1
     new Level("background-1.jpg", [
       new Road(
         {
@@ -55,11 +53,9 @@ function initLevels() {
           y4: height / 2,
         }
       ),
-    ])
-  );
+    ]),
 
-  //Level 2
-  levels.push(
+    //Level 2
     new Level("background-1.jpg", [
       new Road(
         {
@@ -83,17 +79,25 @@ function initLevels() {
           y4: height - height / 4,
         }
       ),
-    ])
-  );
+    ]),
+  ];
 }
 
-const gameController = new GameController(levels);
-
-const uiController = new UIController(gameController);
+function getCanvases() {
+  const roads = document.getElementById("roads");
+  const spots = document.getElementById("spots");
+  const enemies = document.getElementById("enemies");
+  const towers = document.getElementById("towers");
+  return { roads, spots, enemies, towers };
+}
 
 window.onload = () => {
-  const canvases = document.getElementsByTagName("canvas");
+  const canvases = getCanvases();
   resizeCanvases(canvases);
+
+  const gameController = new GameController(genLevels(), canvases);
+
+  const uiController = new UIController(gameController);
 
   uiController.init();
 };

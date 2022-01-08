@@ -9,34 +9,39 @@ export class GameController {
   prevUpdate;
 
   // Level
-  allLevels;
+  levels;
   level;
 
   // Entities
   enemies;
   towers;
 
-  constructor(allLevels) {
+  // DOM
+  canvases;
+
+  constructor(levels, canvases) {
     // FPS
     const fps = 30;
     this.interval = 1000 / fps;
 
-    this.allLevels = allLevels;
+    this.levels = levels;
+
+    this.canvases = canvases;
   }
 
   setLevel(index) {
-    this.level = this.allLevels[index];
-    this.level.init();
-
-    return this;
-  }
-
-  start() {
     this.reset();
-    this.play();
+    this.level = this.levels[index];
+    this.level.init();
   }
 
   reset() {
+    // Canvases
+    for (const id in this.canvases) {
+      const canvas = this.canvases[id];
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     // Entities
     this.enemies = [];
     this.towers = [];

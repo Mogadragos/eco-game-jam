@@ -26,15 +26,6 @@ export class Level {
     document.getElementById("background").src = "./assets/" + this.background;
     const ctx = document.getElementById("roads").getContext("2d");
 
-    this.enemiesCtx.clearRect(
-      0,
-      0,
-      this.enemiesCtx.canvas.width,
-      this.enemiesCtx.canvas.height
-    );
-
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
     ctx.strokeStyle = "#9cec5b";
     ctx.lineWidth = 40;
     ctx.lineCap = "round";
