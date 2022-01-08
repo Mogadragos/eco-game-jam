@@ -1,7 +1,7 @@
 export class Road {
   curves;
   functions;
-  constructor(...curves) {
+  constructor(curves) {
     this.curves = curves;
     this.lastCurveIndex = curves.length - 1;
     this.calcFunctions();

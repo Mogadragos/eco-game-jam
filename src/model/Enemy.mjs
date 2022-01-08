@@ -66,8 +66,6 @@ export class Enemy extends Entity {
     let healthPercent = this.health / this.maxHealth;
     let healthBarSize = healthBarSizeMax * healthPercent;
 
-    console.log(healthBarSize);
-
     this.ctx.lineWidth = 8;
     this.ctx.beginPath();
     this.ctx.strokeStyle =
