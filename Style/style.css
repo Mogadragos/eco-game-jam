@@ -43,20 +43,11 @@ h1 {
   color: var(--primary);
 }
 
-#game {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+* {
+  font-family: "BaksoSapi";
 }
 
-#game > canvas {
-  position: absolute;
-  width: 100%;
-}
-
-#background {
-  position: absolute;
-  min-width: 100%;
-  min-height: 100%;
+@font-face {
+  font-family: "BaksoSapi";
+  src: url("../assets/BaksoSapi.otf");
 }

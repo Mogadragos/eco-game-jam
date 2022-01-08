@@ -1,3 +1,4 @@
+import { AudioController } from "./controller/AudioController.mjs";
 import { GameController } from "./controller/GameController.mjs";
 import { UIController } from "./controller/UIController.mjs";
 import { Level } from "./model/Level.mjs";
@@ -78,6 +79,8 @@ function getCanvases() {
   return { roads, spots, enemies, towers };
 }
 
+const audioController = new AudioController();
+
 window.onload = () => {
   const canvases = getCanvases();
   resizeCanvases(canvases);
@@ -87,4 +90,5 @@ window.onload = () => {
   const uiController = new UIController(gameController);
 
   uiController.init();
+  audioController.init();
 };
