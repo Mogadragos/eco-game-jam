@@ -11,19 +11,23 @@ export class GameController {
   // Entities
   enemies;
   towers;
+
   constructor() {
     // FPS
     const fps = 30;
     this.interval = 1000 / fps;
   }
+
   setLevel(level) {
     this.level = level;
   }
+
   start() {
     this.level.start();
     this.reset();
     this.play();
   }
+
   reset() {
     // Now
     this.then = performance.now();
@@ -31,13 +35,16 @@ export class GameController {
     this.enemies = [];
     this.towers = [];
   }
+
   play() {
     this.paused = false;
     this.loop();
   }
+
   pause() {
     this.paused = true;
   }
+
   loop() {
     if (this.paused) return;
     requestAnimationFrame(() => this.loop());
