@@ -88,11 +88,17 @@ export class GameController {
     const temp_enemies = this.level.update(dt);
     if (temp_enemies) this.enemies = this.enemies.concat(temp_enemies);
 
-    for (const enemy of this.enemies) {
-      enemy.update(dt);
-    }
     for (const tower of this.towers) {
       tower.update(dt);
+    }
+
+    let enemy_index = this.enemies.length;
+    while (enemy_index--) {
+      const enemy = this.enemies[enemy_index];
+      if (enemy.killed) {
+        this.enemies.splice(enemy_index, 1);
+      }
+      enemy.update(dt);
     }
   }
 
