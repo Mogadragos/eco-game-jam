@@ -25,7 +25,7 @@ export class GameController {
 
   constructor(levels, canvases) {
     // FPS
-    const fps = 30;
+    const fps = 60;
     this.interval = 1000 / fps;
 
     this.levels = levels;
@@ -53,18 +53,7 @@ export class GameController {
     this.clearCanvases(this.canvases);
     // Entities
     this.enemies = [];
-    this.towers = [
-      new TowerWithTarget(
-        this,
-        this.canvasesDict.towers.getContext("2d"),
-        500,
-        600,
-        300,
-        0,
-        0,
-        []
-      ),
-    ];
+    this.towers = [];
   }
 
   play() {
@@ -97,7 +86,7 @@ export class GameController {
    * Calculate data of each entity
    */
   update() {
-    const dt = this.delta / 1000;
+    const dt = this.delta / 1000 / 2;
     const temp_enemies = this.level.update(dt);
     if (temp_enemies) this.enemies = this.enemies.concat(temp_enemies);
 
@@ -119,8 +108,9 @@ export class GameController {
    * Render each entity
    */
   render() {
-    for (const enemy of this.enemies) {
-      enemy.render();
+    let enemy_index = this.enemies.length;
+    while (enemy_index--) {
+      this.enemies[enemy_index].render();
     }
     for (const tower of this.towers) {
       tower.render();

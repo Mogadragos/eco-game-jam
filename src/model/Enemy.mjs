@@ -1,6 +1,7 @@
 import { Entity } from "./Entity.mjs";
 
 export class Enemy extends Entity {
+  maxHealth;
   health;
   speed;
   aliveTime;
@@ -9,10 +10,12 @@ export class Enemy extends Entity {
   hasTurtle;
   killed;
 
-  constructor(ctx, road, sprite) {
+  constructor(ctx, road, sprite, maxHealth, speed) {
     super(ctx, -10, -10, 30, 50, sprite);
+    this.maxHealth = maxHealth;
+    this.health = maxHealth;
     this.road = road;
-    this.speed = 0.3;
+    this.speed = speed;
     this.aliveTime = 0;
     this.prevPosition = { x: 0, y: 0 };
     this.positionTime = 0;
@@ -21,6 +24,11 @@ export class Enemy extends Entity {
   }
 
   update(dt) {
+    if (this.health < 0) {
+      this.killed = true;
+      return;
+    }
+
     this.aliveTime += dt;
     this.positionTime += dt * this.speed;
     const position = this.road.getPosition(this.positionTime);
@@ -39,5 +47,34 @@ export class Enemy extends Entity {
       this.prevPosition.x = this.x = position.x;
       this.prevPosition.y = this.y = position.y;
     }
+  }
+
+  render() {
+    super.render();
+
+    this.ctx.lineWidth = 10;
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = "black";
+    this.ctx.moveTo(this.x - 30, this.y - 40);
+    this.ctx.lineTo(this.x + 30, this.y - 40);
+    this.ctx.closePath();
+    this.ctx.stroke();
+
+    let healthBarSizeMax = 60;
+    let healthPercent = this.health / this.maxHealth;
+    let healthBarSize = healthBarSizeMax * healthPercent;
+
+    this.ctx.lineWidth = 8;
+    this.ctx.beginPath();
+    this.ctx.strokeStyle =
+      healthPercent > 0.5
+        ? "#00FF00"
+        : healthPercent > 0.2
+        ? "#FFFF00"
+        : "#FF0000";
+    this.ctx.moveTo(this.x - healthBarSizeMax / 2, this.y - 40);
+    this.ctx.lineTo(this.x - healthBarSizeMax / 2 + healthBarSize, this.y - 40);
+    this.ctx.closePath();
+    this.ctx.stroke();
   }
 }

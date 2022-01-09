@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <div id="game" style="display: none">
+    <div id="game" style="display: none" class="screen">
       <img id="background" src="" />
       <canvas id="roads"></canvas>
       <canvas id="spots"></canvas>
@@ -35,7 +35,7 @@
       <!-- HUD -->
       <div id="hud" style="display: none">
         <button class="btn" id="pause">
-          <i class="fas fa-pause"></i>
+          <i class="fas fa-pause fa-lg"></i>
         </button>
 
         <div id="pauseMenu" style="display: none">
@@ -45,28 +45,34 @@
 
         <div id="buyMenu" class="hidden sideMenu">
           <button class="btn">
-            <p>Bénévole 50 <i class="fas fa-coins"></i></p>
+            <div>Bénévole 50 <i class="fas fa-coins"></i></div>
           </button>
           <button class="btn">
-            <p>Feu de camp 100 <i class="fas fa-coins"></i></p>
+            <div>Feu de camp 100 <i class="fas fa-coins"></i></div>
           </button>
           <button class="btn">
-            <p>Keuf 200 <i class="fas fa-coins"></i></p>
+            <div>Policier 200 <i class="fas fa-coins"></i></div>
           </button>
         </div>
 
         <div id="upgradeMenu" class="hidden sideMenu">
-          <p>Nom de la tour</p>
+          <div>Nom de la tour</div>
           <ul>
-            <li>Dégats : <span id="damage"></span></li>
-            <li>Vitesse d'attaque : <span id="reloadTime"></span></li>
-            <li>portée : <span id="range"></span></li>
+            <li>Dégats : <span id="tower-damage"></span></li>
+            <li>Vitesse d'attaque : <span id="tower-reloadTime"></span></li>
+            <li>portée : <span id="tower-range"></span></li>
           </ul>
           <button class="btn">
-            <p>
-              Améliorer <span id="towerPrice"></span>
+            <div>
+              Améliorer <span id="tower-upgradePrice"></span>
               <i class="fas fa-coins"></i>
-            </p>
+            </div>
+          </button>
+          <button class="btn">
+            <div>
+              Vendre <span id="tower-sellPrice"></span>
+              <i class="fas fa-coins"></i>
+            </div>
           </button>
         </div>
       </div>
@@ -79,7 +85,7 @@
             Play
           </button>
           <button class="btn navBtn menuBtn" data-to="settings">
-            Settings
+            Paramètres
           </button>
           <button class="btn navBtn menuBtn" data-to="credits">Credits</button>
         </div>
@@ -129,6 +135,7 @@
           <h2>Julien CAILLAUD</h2>
           <h2>Quentin ROBARD</h2>
           <h2>Arthur FERRER</h2>
+          <h2>Philémon SOUL</h2>
         </div>
         <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
       </div>
