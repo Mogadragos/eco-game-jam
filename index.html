@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROTECT THE TURTLES !!</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="manifest" href="turtles.webmanifest" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/menu.css" />
+    <link rel="stylesheet" href="./style/levelSelection.css" />
+    <link rel="stylesheet" href="./style/settings.css" />
+    <link rel="stylesheet" href="./style/credits.css" />
+    <link rel="stylesheet" href="./style/game.css" />
+    <link rel="stylesheet" href="./style/hud.css" />
+    <link rel="stylesheet" href="./style/variables.css" />
+
+    <script defer src="./assets/icons/all.js"></script>
+    <!--load all styles -->
+  </head>
+
+  <body>
+    <div id="game" style="display: none" class="screen">
+      <img id="background" src="" />
+      <canvas id="roads"></canvas>
+      <canvas id="spots"></canvas>
+      <canvas id="enemies"></canvas>
+      <canvas id="towers"></canvas>
+    </div>
+
+    <p id="golds" style="display: none">
+      <span id="goldAmount"></span> <i class="fas fa-coins"></i>
+    </p>
+
+    <button class="btn" id="pause" style="display: none">
+      <i class="fas fa-pause fa-lg"></i>
+    </button>
+
+    <!-- HUD -->
+    <div id="hud" style="display: none">
+      <div id="pauseMenu" style="display: none">
+        <button id="resume" class="btn">Continuer</button>
+        <button id="exit" class="btn">Quitter</button>
+      </div>
+
+      <div id="buyMenu" class="hidden sideMenu">
+        <button id="closeBuyMenu" class="btn btnCloseMenu">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <button class="btn" id="volunteer">
+          <div>Bénévole 50 <i class="fas fa-coins"></i></div>
+        </button>
+        <button class="btn" id="campfire">
+          <div>Feu de camp 100 <i class="fas fa-coins"></i></div>
+        </button>
+        <button class="btn" id="policeman">
+          <div>Policier 200 <i class="fas fa-coins"></i></div>
+        </button>
+      </div>
+
+      <div id="upgradeMenu" class="hidden sideMenu">
+        <button id="closeUpgradeMenu" class="btn btnCloseMenu">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div>Nom de la tour</div>
+        <ul>
+          <li>Dégats : <span id="tower-damage"></span></li>
+          <li>Vitesse d'attaque : <span id="tower-reloadTime"></span></li>
+          <li>portée : <span id="tower-range"></span></li>
+        </ul>
+        <button class="btn" id="upgrade">
+          <div>
+            Améliorer <span id="tower-upgradePrice"></span>
+            <i class="fas fa-coins"></i>
+          </div>
+        </button>
+        <button class="btn" id="sell">
+          <div>
+            Vendre <span id="tower-sellPrice"></span>
+            <i class="fas fa-coins"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div id="ui">
+      <!-- Menu -->
+      <div id="menu" class="screen">
+        <h1>PROTECT THE TURTLES !!</h1>
+        <div class="menu-btnContainer">
+          <button class="btn navBtn menuBtn" data-to="levelSelection">
+            Play
+          </button>
+          <button class="btn navBtn menuBtn" data-to="settings">
+            Paramètres
+          </button>
+          <button class="btn navBtn menuBtn" data-to="credits">Credits</button>
+        </div>
+      </div>
+
+      <!-- Level selection -->
+      <div id="levelSelection" class="screen" style="display: none">
+        <h1>Difficulty</h1>
+        <div class="levelSelection-btnContainer">
+          <button class="btn levelBtn" id="btnLevel1" data-level="0">1</button>
+          <button class="btn levelBtn" id="btnLevel2" data-level="1">2</button>
+          <!-- <button class="btn levelBtn" id="btnLevel3" data-level="2">3</button> -->
+        </div>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
+      </div>
+
+      <!-- Settings -->
+      <div id="settings" class="screen" style="display: none">
+        <h1>Paramètres</h1>
+        <div class="settingsContainer">
+          <button class="btn settingsBtn" id="toggleMusic">
+            Musique
+            <i class="fas fa-volume-up" id="music-on"></i>
+            <i
+              class="fas fa-volume-mute"
+              id="music-off"
+              style="display: none"
+            ></i>
+          </button>
+          <button class="btn settingsBtn" id="toggleSound">
+            Bruitages
+            <i class="fas fa-volume-up" id="sound-on"></i>
+            <i
+              class="fas fa-volume-mute"
+              id="sound-off"
+              style="display: none"
+            ></i>
+          </button>
+        </div>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
+      </div>
+
+      <!-- Credits -->
+      <div id="credits" class="screen" style="display: none">
+        <h1>Credits</h1>
+        <div class="creditsContainer">
+          <h1>développement</h1>
+          <h2>
+            <a href="http://juliencaillaud.com/">Julien CAILLAUD</a>
+          </h2>
+          <h2>Quentin ROBARD</h2>
+          <h1>Graphismes</h1>
+          <h2>
+            Arthur FERRER -
+            <a href="https://www.instagram.com/koito_joestar/"
+              ><i class="fab fa-instagram"></i> koito_joestar
+            </a>
+          </h2>
+          <h1>Musiques / Sons</h1>
+          <h2>
+            Philémon SOUL -
+            <a href="https://soundcloud.com/hiromasterdub"
+              ><i class="fab fa-soundcloud"></i> hiromasterdub
+            </a>
+          </h2>
+        </div>
+        <button class="btn navBtn" id="btnMenu" data-to="menu">MENU</button>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
