@@ -1,17 +1,17 @@
 import { Entity } from "./Entity.mjs";
 
 export class Tower extends Entity {
-  gameManager;
+  gameController;
   range;
   damage;
   reloadTime;
   time;
   shootReady;
 
-  constructor(gameManager, ctx, x, y, range, damage, reloadTime, sprite) {
+  constructor(gameController, ctx, x, y, range, damage, reloadTime, sprite) {
     super(ctx, x, y, 30, 30, sprite);
 
-    this.gameManager = gameManager;
+    this.gameController = gameController;
     this.range = range;
     this.damage = damage;
     this.time = this.reloadTime = reloadTime;

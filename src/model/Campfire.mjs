@@ -4,10 +4,10 @@ export class Campfire extends Tower {
   maxRangeFullDamage;
   damageMaxRange;
 
-  constructor(gameManager, ctx, x, y) {
+  constructor(gameController, ctx, x, y) {
     const range = 300,
       damage = 1;
-    super(gameManager, ctx, x, y, range, damage, 0.4, "");
+    super(gameController, ctx, x, y, range, damage, 0.4, "");
 
     this.maxRangeFullDamage = 0.25 * range;
     this.damageMaxRange = 0.25 * damage;
@@ -25,7 +25,7 @@ export class Campfire extends Tower {
   update(dt) {
     super.update(dt);
     if (this.shootReady) {
-      for (const enemy of this.gameManager.enemies) {
+      for (const enemy of this.gameController.enemies) {
         const distance = this.getDistance(enemy);
         if (distance < this.range) {
           // Coef d'amenuisement selon distance

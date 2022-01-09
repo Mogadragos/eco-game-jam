@@ -3,15 +3,15 @@ import { Tower } from "./Tower.mjs";
 export class TowerWithTarget extends Tower {
   target;
 
-  constructor(gameManager, ctx, x, y, range, damage, reloadTime, sprite) {
-    super(gameManager, ctx, x, y, range, damage, reloadTime, sprite);
+  constructor(gameController, ctx, x, y, range, damage, reloadTime, sprite) {
+    super(gameController, ctx, x, y, range, damage, reloadTime, sprite);
     this.target = null;
   }
 
   getTarget() {
     let target = null;
     let maxAliveTime = 0;
-    for (const enemy of this.gameManager.enemies) {
+    for (const enemy of this.gameController.enemies) {
       const distance = this.getDistance(enemy);
       if (distance < this.range && maxAliveTime < enemy.aliveTime) {
         maxAliveTime = enemy.aliveTime;
