@@ -20,6 +20,7 @@ export class UIController {
     //#region HUD
     document.getElementById("resume").onclick = () => {
       document.getElementById("pause").style.display = "";
+      document.getElementById("golds").style.display = "";
       document.getElementById("pauseMenu").style.display = "none";
       document.getElementById("hud").style.display = "none";
       this.resume();
@@ -27,6 +28,7 @@ export class UIController {
 
     document.getElementById("exit").onclick = () => {
       document.getElementById("pause").style.display = "none";
+      document.getElementById("golds").style.display = "none";
       document.getElementById("pauseMenu").style.display = "none";
       document.getElementById("hud").style.display = "none";
       document.getElementById("ui").style.display = "";
@@ -35,6 +37,7 @@ export class UIController {
 
     document.getElementById("pause").onclick = () => {
       document.getElementById("pause").style.display = "none";
+      document.getElementById("golds").style.display = "none";
       document.getElementById("pauseMenu").style.display = "";
       document.getElementById("hud").style.display = "";
       this.pause();
@@ -115,6 +118,9 @@ export class UIController {
       console.log(this.gameController.level);
       if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
         this.gameController.level.golds -= 50;
+        document.getElementById("goldAmount").innerHTML =
+          this.gameController.level.golds;
+        //todo: mettre un son à l'achat
         let newTower = new TowerWithTarget(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
@@ -129,12 +135,17 @@ export class UIController {
         this.currentSelectedSpot.tower = newTower;
         this.gameController.addTower(newTower);
         this.closeBuyMenu();
+      } else {
+        //todo: impossible d'acheter mettre un son
       }
     };
 
     document.getElementById("campfire").onclick = () => {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 100) {
         this.gameController.level.golds -= 100;
+        document.getElementById("goldAmount").innerHTML =
+          this.gameController.level.golds;
+        //todo: mettre un son à l'achat
         let newTower = new Campfire(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
@@ -145,12 +156,17 @@ export class UIController {
         this.currentSelectedSpot.tower = newTower;
         this.gameController.addTower(newTower);
         this.closeBuyMenu();
+      } else {
+        //todo: impossible d'acheter mettre un son
       }
     };
 
     document.getElementById("policeman").onclick = () => {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 200) {
         this.gameController.level.golds -= 200;
+        document.getElementById("goldAmount").innerHTML =
+          this.gameController.level.golds;
+        //todo: mettre un son à l'achat
         let newTower = new TowerWithTarget(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
@@ -165,6 +181,8 @@ export class UIController {
         this.currentSelectedSpot.tower = newTower;
         this.gameController.addTower(newTower);
         this.closeBuyMenu();
+      } else {
+        //todo: impossible d'acheter mettre un son
       }
     };
 
@@ -212,6 +230,7 @@ export class UIController {
       btn.onclick = (e) => {
         document.getElementById("game").style.display = "";
         document.getElementById("pause").style.display = "";
+        document.getElementById("golds").style.display = "";
         document.getElementById("levelSelection").style.display = "none";
         document.getElementById("ui").style.display = "none";
         this.startLevel(e.srcElement.dataset.level);

@@ -110,6 +110,11 @@ export class GameController {
     while (enemy_index--) {
       const enemy = this.enemies[enemy_index];
       if (enemy.killed) {
+        if (enemy.health <= 0) {
+          this.level.golds += this.enemies[enemy_index].gold;
+          document.getElementById("goldAmount").innerHTML = this.level.golds;
+        }
+
         this.enemies.splice(enemy_index, 1);
       }
       enemy.update(dt);

@@ -64,6 +64,8 @@ export class Level {
     for (const spot of this.spots) {
       spot.render();
     }
+
+    document.getElementById("goldAmount").innerHTML = this.golds;
   }
 
   update(dt) {
@@ -80,7 +82,7 @@ export class Level {
               this.roads[0],
               this.waves[0].enemies.health,
               this.waves[0].enemies.speed,
-              this.waves[0].enemies.golds
+              this.waves[0].enemies.gold
             );
           }
         } else {
