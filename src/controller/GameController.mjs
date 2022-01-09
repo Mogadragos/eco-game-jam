@@ -17,11 +17,15 @@ export class GameController {
   // Entities
   enemies;
   towers;
+  turtles;
+  indexBaseTurtle;
 
   // DOM
   canvasesDict;
   canvases;
   dynamicCanvases;
+
+  goldAmoundDOM;
 
   constructor(levels, canvases) {
     // FPS
@@ -33,6 +37,8 @@ export class GameController {
     this.canvasesDict = canvases;
     this.canvases = Object.values(canvases);
     this.dynamicCanvases = [canvases.enemies, canvases.towers];
+
+    this.goldAmoundDOM = document.getElementById("goldAmount");
   }
 
   setLevel(index) {
@@ -61,6 +67,7 @@ export class GameController {
     // Entities
     this.enemies = [];
     this.towers = [];
+    this.indexBaseTurtle = 0;
     this.turtles = [];
   }
 
@@ -112,12 +119,19 @@ export class GameController {
       if (enemy.killed) {
         if (enemy.health <= 0) {
           this.level.golds += this.enemies[enemy_index].gold;
-          document.getElementById("goldAmount").innerHTML = this.level.golds;
+          this.goldAmoundDOM.innerHTML = this.level.golds;
         }
 
         this.enemies.splice(enemy_index, 1);
       }
       enemy.update(dt);
+      if (enemy.tryGetTurtle) {
+        if (this.indexBaseTurtle < this.turtles.length) {
+          window.audioController.play("alarm");
+          enemy.setTurtle(this.turtles[this.indexBaseTurtle++]);
+        }
+        this.tryGetTurtle = false;
+      }
     }
 
     let turtles_index = this.turtles.length;
