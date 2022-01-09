@@ -25,11 +25,10 @@ export class Enemy extends Entity {
 
   takeDamage(damage) {
     this.health -= damage;
-    if (this.health < 0) this.killed = true;
   }
 
   update(dt) {
-    if (this.health < 0) {
+    if (!(this.health > 0)) {
       this.killed = true;
       return;
     }
