@@ -36,21 +36,29 @@ export class Entity {
 
   update() {}
   render() {
-    if (!this.animation) return;
-    this.ctx.translate(this.x, this.y);
-    this.ctx.rotate(this.rotation);
-    this.ctx.translate(-this.x - 0.5 * this.width, -this.y - 0.5 * this.height);
+    try {
+      this.ctx.translate(this.x, this.y);
+      this.ctx.rotate(this.rotation);
+      this.ctx.translate(
+        -this.x - 0.5 * this.width,
+        -this.y - 0.5 * this.height
+      );
 
-    this.ctx.beginPath();
-    this.ctx.drawImage(
-      this.animation[this.spriteIndex],
-      this.x,
-      this.y,
-      this.width,
-      this.height
-    );
-    this.ctx.closePath();
-
-    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      this.ctx.beginPath();
+      this.ctx.drawImage(
+        this.animation[this.spriteIndex],
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      );
+    } catch (e) {
+      this.ctx.fillStyle = "#BF40BF";
+      this.ctx.rect(this.x, this.y, this.width, this.height);
+      this.ctx.fill();
+    } finally {
+      this.ctx.closePath();
+      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
   }
 }
