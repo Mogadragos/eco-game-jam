@@ -1,3 +1,5 @@
+import { Turtle } from "../model/Turtle.mjs";
+
 export class GameController {
   // FPS
   then;
@@ -37,6 +39,13 @@ export class GameController {
     this.reset();
     this.level = this.levels[index];
     this.level.init();
+
+    let firstRoad = this.level.roads[0],
+      { x4, y4 } = firstRoad.curves[firstRoad.lastCurveIndex],
+      turtleCtx = this.canvasesDict.enemies.getContext("2d");
+    for (let i = 0; i < this.level.nbTurtles; i++) {
+      this.turtles.push(new Turtle(turtleCtx, x4, y4));
+    }
   }
 
   clearCanvases(canvases) {
@@ -52,6 +61,7 @@ export class GameController {
     // Entities
     this.enemies = [];
     this.towers = [];
+    this.turtles = [];
   }
 
   play() {
@@ -104,6 +114,14 @@ export class GameController {
       }
       enemy.update(dt);
     }
+
+    let turtles_index = this.turtles.length;
+    while (turtles_index--) {
+      const turtle = this.turtles[turtles_index];
+      if (turtle.killed) {
+        this.turtles.splice(turtles_index, 1);
+      }
+    }
   }
 
   /**
@@ -116,6 +134,9 @@ export class GameController {
     }
     for (const tower of this.towers) {
       tower.render();
+    }
+    for (const turtle of this.turtles) {
+      turtle.render();
     }
   }
 }

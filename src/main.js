@@ -29,13 +29,13 @@ function loadLevels(canvases) {
     let levelRoads = levelsJSON[index].roads.map((road) => {
       return new Road(road);
     });
-
     let levelSpots = levelsJSON[index].spots.map((spot) => {
       return new Spot(canvases.spots.getContext("2d"), spot.x, spot.y);
     });
     let levelWaves = levelsJSON[index].waves.map((wave) => {
       return new Wave(wave.timing, wave.enemies);
     });
+    let nbTurtles = levelsJSON[index].nbTurtles;
     let startingGoldAmount = levelsJSON[index].startingGoldAmount;
 
     levels.push(
@@ -44,6 +44,7 @@ function loadLevels(canvases) {
         levelRoads,
         levelSpots,
         levelWaves,
+        nbTurtles,
         startingGoldAmount
       )
     );

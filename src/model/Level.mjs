@@ -12,11 +12,12 @@ export class Level {
 
   cooldown;
 
-  constructor(background, roads, spots, waves, startGoldAmount) {
+  constructor(background, roads, spots, waves, nbTurtles, startGoldAmount) {
     this.background = background;
     this.roads = roads;
     this.spots = spots;
     this.waves = waves;
+    this.nbTurtles = nbTurtles;
     this.golds = startGoldAmount;
 
     this.enemiesCtx = document.getElementById("enemies").getContext("2d");
