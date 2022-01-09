@@ -84,7 +84,7 @@ async function init() {
   );
 
   promises.push(
-    imageController.init([
+    window.imageController.init([
       {
         name: "enemy",
         sprites: ["./assets/sprites/red.png"],

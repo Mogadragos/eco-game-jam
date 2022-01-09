@@ -36,6 +36,7 @@ export class Entity {
 
   update() {}
   render() {
+    if (!this.animation) return;
     this.ctx.translate(this.x, this.y);
     this.ctx.rotate(this.rotation);
     this.ctx.translate(-this.x - 0.5 * this.width, -this.y - 0.5 * this.height);
