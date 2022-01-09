@@ -86,6 +86,5 @@ export class Enemy extends Entity {
 
   die() {
     this.killed = true;
-    //todo: give gold
   }
 }

@@ -12,12 +12,12 @@ export class Level {
 
   cooldown;
 
-  constructor(background, roads, spots, waves, startGoldAmount) {
+  constructor(background, roads, spots, waves) {
     this.background = background;
     this.roads = roads;
     this.spots = spots;
     this.waves = waves;
-    this.golds = startGoldAmount;
+    this.golds = 80;
 
     this.enemiesCtx = document.getElementById("enemies").getContext("2d");
     this.time = 0;
@@ -63,6 +63,8 @@ export class Level {
     for (const spot of this.spots) {
       spot.render();
     }
+
+    document.getElementById("goldAmount").innerHTML = this.golds;
   }
 
   update(dt) {
@@ -80,7 +82,7 @@ export class Level {
               "",
               this.waves[0].enemies.health,
               this.waves[0].enemies.speed,
-              this.waves[0].enemies.golds
+              this.waves[0].enemies.gold
             );
           }
         } else {

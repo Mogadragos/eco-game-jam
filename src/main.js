@@ -22,29 +22,22 @@ function loadLevels(canvases) {
   let levels = [];
 
   //Chargement des données depuis le JSON
-  for (let index in levelsJSON) {
-    let levelImage = levelsJSON[index].image;
-    let levelRoads = levelsJSON[index].roads.map((road) => {
+  const levelsJSONCopy = JSON.parse(JSON.stringify(levelsJSON));
+
+  for (let index in levelsJSONCopy) {
+    let levelImage = levelsJSONCopy[index].image;
+    let levelRoads = levelsJSONCopy[index].roads.map((road) => {
       return new Road(road);
     });
 
-    let levelSpots = levelsJSON[index].spots.map((spot) => {
+    let levelSpots = levelsJSONCopy[index].spots.map((spot) => {
       return new Spot(canvases.spots.getContext("2d"), spot.x, spot.y, "");
     });
-    let levelWaves = levelsJSON[index].waves.map((wave) => {
+    let levelWaves = levelsJSONCopy[index].waves.map((wave) => {
       return new Wave(wave.timing, wave.enemies);
     });
-    let startingGoldAmount = levelsJSON[index].startingGoldAmount;
 
-    levels.push(
-      new Level(
-        levelImage,
-        levelRoads,
-        levelSpots,
-        levelWaves,
-        startingGoldAmount
-      )
-    );
+    levels.push(new Level(levelImage, levelRoads, levelSpots, levelWaves));
   }
 
   return levels;
