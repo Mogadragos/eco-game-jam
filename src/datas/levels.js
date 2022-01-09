@@ -4,6 +4,7 @@ const height = 1080;
 export const levelsJSON = [
   {
     level: 1,
+    startingGoldAmount: 50,
     image: "background-1.jpg",
     roads: [
       [
@@ -77,10 +78,21 @@ export const levelsJSON = [
           gold: 5,
         },
       },
+      {
+        timing: 59,
+        enemies: {
+          cooldown: 0.2,
+          number: 1,
+          health: 100,
+          speed: 0.08,
+          gold: 50,
+        },
+      },
     ],
   },
   {
     level: 2,
+    startingGoldAmount: 100,
     image: "background-1.jpg",
     roads: [
       [
@@ -167,6 +179,7 @@ export const levelsJSON = [
   },
   {
     level: 3,
+    startingGoldAmount: 100,
     image: "background-1.jpg",
     roads: [
       [
