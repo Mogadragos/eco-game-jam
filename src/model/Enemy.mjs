@@ -7,7 +7,9 @@ export class Enemy extends Entity {
   aliveTime;
   prevPosition;
   positionTime;
-  hasTurtle;
+  tryGetTurtle;
+  turtle;
+  isGoingBack;
   killed;
   gold;
 
@@ -29,7 +31,9 @@ export class Enemy extends Entity {
     this.aliveTime = 0;
     this.prevPosition = { x: 0, y: 0 };
     this.positionTime = 0;
-    this.hasTurtle = false;
+    this.tryGetTurtle = false;
+    this.turtle = null;
+    this.isGoingBack = false;
     this.killed = false;
     this.gold = gold;
   }
@@ -51,10 +55,11 @@ export class Enemy extends Entity {
     this.positionTime += dt * this.speed;
     const position = this.road.getPosition(this.positionTime);
     if (position.out) {
-      if (this.hasTurtle) {
+      if (this.isGoingBack) {
         this.killed = true;
       } else {
-        this.hasTurtle = true;
+        this.isGoingBack = true;
+        this.tryGetTurtle = true;
         this.speed = -this.speed;
       }
     } else {
@@ -65,6 +70,17 @@ export class Enemy extends Entity {
       this.prevPosition.x = this.x = position.x;
       this.prevPosition.y = this.y = position.y;
     }
+
+    if (this.turtle) {
+      const turlePos = this.road.getPosition(this.positionTime - 0.05);
+      this.turtle.x = turlePos.x;
+      this.turtle.y = turlePos.y;
+    }
+  }
+
+  setTurtle(turtle) {
+    this.turtle = turtle;
+    this.turtle.setIdle(1, 0.2);
   }
 
   render() {

@@ -83,8 +83,8 @@ self.addEventListener("install", (e) => {
   e.waitUntil(
     (async () => {
       const cache = await caches.open(cacheName);
-      //console.warn("[Service Worker] Caching all files");
-      //await cache.addAll(files);
+      console.warn("[Service Worker] Caching all files");
+      await cache.addAll(files);
     })()
   );
 });
@@ -97,8 +97,8 @@ self.addEventListener("fetch", (e) => {
       if (r) return r;
       const response = await fetch(e.request);
       const cache = await caches.open(cacheName);
-      //console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
-      //cache.put(e.request, response.clone());
+      console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
+      cache.put(e.request, response.clone());
       return response;
     })()
   );
