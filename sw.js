@@ -11,7 +11,7 @@ const files = [
   "/assets/icons/icon-192x192.png",
   "/assets/icons/icon-384x384.png",
 
-  "/assets/background-1.jpg",
+  "/assets/background-1.png",
   "/assets/BaksoSapi.otf",
   "/assets/sample-9s.mp3",
   "/assets/skyrim-main-theme-w-mp3-link.mp3",

@@ -5,7 +5,8 @@ export const levelsJSON = [
   {
     level: 1,
     startingGoldAmount: 50,
-    image: "background-1.jpg",
+    image: "background-1.png",
+    nbTurtles: 5,
     roads: [
       [
         {
@@ -93,7 +94,8 @@ export const levelsJSON = [
   {
     level: 2,
     startingGoldAmount: 100,
-    image: "background-1.jpg",
+    image: "background-1.png",
+    nbTurtles: 3,
     roads: [
       [
         {
@@ -180,7 +182,7 @@ export const levelsJSON = [
   {
     level: 3,
     startingGoldAmount: 100,
-    image: "background-1.jpg",
+    image: "background-1.png",
     roads: [
       [
         {
