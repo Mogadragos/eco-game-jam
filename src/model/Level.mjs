@@ -1,5 +1,8 @@
 import { Enemy } from "./Enemy.mjs";
 
+const width = 1920;
+const height = 1080;
+
 export class Level {
   background;
   roads;
@@ -29,6 +32,35 @@ export class Level {
   }
 
   init() {
+    //#region Canvas on click
+    document.getElementById("spots").onclick = (e) => {
+      for (const spot of this.spots) {
+        let distance = distanceBetween(
+          {
+            x: (e.clientX / window.innerWidth) * width,
+            y: (e.clientY / window.innerHeight) * height,
+          },
+          {
+            x: spot.x,
+            y: spot.y,
+          }
+        );
+
+        if (distance < spot.radius) {
+          document.getElementById("hud").style.display = "";
+
+          if (!spot.tower) {
+            //Open buy menu
+            document.getElementById("buyMenu").classList.remove("hidden");
+          } else {
+            //Open upgrade menu
+            document.getElementById("upgradeMenu").classList.remove("hidden");
+          }
+        }
+      }
+    };
+    //#endregion
+
     this.reset();
 
     document.getElementById("background").src = "./assets/" + this.background;
@@ -86,4 +118,8 @@ export class Level {
 
     return;
   }
+}
+
+function distanceBetween(from, to) {
+  return Math.sqrt(Math.pow(from.x - to.x, 2) + Math.pow(from.y - to.y, 2));
 }

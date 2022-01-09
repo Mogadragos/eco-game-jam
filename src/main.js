@@ -55,9 +55,11 @@ window.onload = () => {
   const canvases = getCanvases();
   resizeCanvases(canvases);
 
-  const gameController = new GameController(loadLevels(canvases), canvases);
+  const levels = loadLevels(canvases);
 
-  const uiController = new UIController(gameController);
+  const gameController = new GameController(levels, canvases);
+
+  const uiController = new UIController(gameController, levels);
 
   uiController.init();
   audioController.init();

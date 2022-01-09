@@ -1,19 +1,19 @@
 import { Entity } from "./Entity.mjs";
 
 export class Tower extends Entity {
-  gameManager;
+  gameController;
   range;
   damage;
   reloadTime;
   target;
 
-  constructor(gameManager, ctx, x, y, range, damage, reloadTime, sprite) {
+  constructor(gameController, ctx, x, y, range, damage, reloadTime, sprite) {
     super(ctx, x, y, 30, 30, sprite);
 
-    this.gameManager = gameManager;
-    this.range = 200;
-    this.damage = 0;
-    this.reloadTime = 0;
+    this.gameController = gameController;
+    this.range = range;
+    this.damage = damage;
+    this.reloadTime = reloadTime;
   }
 
   getDistance(entity) {
@@ -25,7 +25,7 @@ export class Tower extends Entity {
   getTarget() {
     let target = null;
     let maxAliveTime = 0;
-    for (const enemy of this.gameManager.enemies) {
+    for (const enemy of this.gameController.enemies) {
       const distance = this.getDistance(enemy);
       if (distance < this.range && maxAliveTime < enemy.aliveTime) {
         maxAliveTime = enemy.aliveTime;
