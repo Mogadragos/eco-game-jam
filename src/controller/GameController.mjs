@@ -82,6 +82,10 @@ export class GameController {
     }
   }
 
+  addTower(tower) {
+    this.towers.push(tower);
+  }
+
   /**
    * Calculate data of each entity
    */

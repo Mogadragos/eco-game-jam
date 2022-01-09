@@ -31,52 +31,60 @@
       <canvas id="towers"></canvas>
     </div>
 
-    <div id="ui">
-      <!-- HUD -->
-      <div id="hud" style="display: none">
-        <button class="btn" id="pause">
-          <i class="fas fa-pause fa-lg"></i>
-        </button>
+    <button class="btn" id="pause" style="display: none">
+      <i class="fas fa-pause fa-lg"></i>
+    </button>
 
-        <div id="pauseMenu" style="display: none">
-          <button id="resume" class="btn">Continuer</button>
-          <button id="exit" class="btn">Quitter</button>
-        </div>
-
-        <div id="buyMenu" class="hidden sideMenu">
-          <button class="btn">
-            <div>Bénévole 50 <i class="fas fa-coins"></i></div>
-          </button>
-          <button class="btn">
-            <div>Feu de camp 100 <i class="fas fa-coins"></i></div>
-          </button>
-          <button class="btn">
-            <div>Policier 200 <i class="fas fa-coins"></i></div>
-          </button>
-        </div>
-
-        <div id="upgradeMenu" class="hidden sideMenu">
-          <div>Nom de la tour</div>
-          <ul>
-            <li>Dégats : <span id="tower-damage"></span></li>
-            <li>Vitesse d'attaque : <span id="tower-reloadTime"></span></li>
-            <li>portée : <span id="tower-range"></span></li>
-          </ul>
-          <button class="btn">
-            <div>
-              Améliorer <span id="tower-upgradePrice"></span>
-              <i class="fas fa-coins"></i>
-            </div>
-          </button>
-          <button class="btn">
-            <div>
-              Vendre <span id="tower-sellPrice"></span>
-              <i class="fas fa-coins"></i>
-            </div>
-          </button>
-        </div>
+    <!-- HUD -->
+    <div id="hud" style="display: none">
+      <div id="pauseMenu" style="display: none">
+        <button id="resume" class="btn">Continuer</button>
+        <button id="exit" class="btn">Quitter</button>
       </div>
 
+      <div id="buyMenu" class="hidden sideMenu">
+        <button id="closeBuyMenu" class="btn btnCloseMenu">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <button class="btn" id="benevole">
+          <div>Bénévole 50 <i class="fas fa-coins"></i></div>
+        </button>
+        <button class="btn" id="campfire">
+          <div>Feu de camp 100 <i class="fas fa-coins"></i></div>
+        </button>
+        <button class="btn" id="policeman">
+          <div>Policier 200 <i class="fas fa-coins"></i></div>
+        </button>
+      </div>
+
+      <div id="upgradeMenu" class="hidden sideMenu">
+        <button id="closeUpgradeMenu" class="btn btnCloseMenu">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div>Nom de la tour</div>
+        <ul>
+          <li>Dégats : <span id="tower-damage"></span></li>
+          <li>Vitesse d'attaque : <span id="tower-reloadTime"></span></li>
+          <li>portée : <span id="tower-range"></span></li>
+        </ul>
+        <button class="btn">
+          <div>
+            Améliorer <span id="tower-upgradePrice"></span>
+            <i class="fas fa-coins"></i>
+          </div>
+        </button>
+        <button class="btn">
+          <div>
+            Vendre <span id="tower-sellPrice"></span>
+            <i class="fas fa-coins"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div id="ui">
       <!-- Menu -->
       <div id="menu" class="screen">
         <h1>PROTECT THE TURTLES !!</h1>
