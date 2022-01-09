@@ -64,7 +64,6 @@ export class Entity {
       this.spriteIndex = 0;
       if (this.isAnimation) {
         this.isAnimation = false;
-        console.log(this.idle);
         this.animation = this.idle;
         this.spriteTime = this.idleTime;
         this.currentSpriteTime = 0;

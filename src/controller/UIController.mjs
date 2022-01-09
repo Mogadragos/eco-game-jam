@@ -143,8 +143,6 @@ export class UIController {
 
     //#region Upgrade menu
     document.getElementById("sell").onclick = () => {
-      console.log(this.gameController.towers);
-
       //remove tower from the game controller towers
       let index = this.gameController.towers.indexOf(
         this.currentSelectedSpot.tower
