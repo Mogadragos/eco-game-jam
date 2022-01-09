@@ -34,7 +34,7 @@ export class Level {
       spot.tower = null;
     }
 
-    this.golds = 200;
+    this.golds = 120;
   }
 
   init() {

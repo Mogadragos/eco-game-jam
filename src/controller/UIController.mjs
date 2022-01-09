@@ -63,8 +63,7 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 50;
-        document.getElementById("goldAmount").innerHTML =
-          this.gameController.level.golds;
+        this.updateGoldAmount();
         const width = 80;
         let newTower = new TowerWithTarget(
           this.gameController,
@@ -73,8 +72,8 @@ export class UIController {
           this.currentSelectedSpot.y,
           width,
           (width * 181) / 120,
-          250,
-          2,
+          300,
+          4,
           0.5,
           [
             window.imageController.animations.volunteerIdle,
@@ -94,8 +93,7 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 100) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 100;
-        document.getElementById("goldAmount").innerHTML =
-          this.gameController.level.golds;
+        this.updateGoldAmount();
         let newTower = new Campfire(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
@@ -115,8 +113,7 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 200) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 200;
-        document.getElementById("goldAmount").innerHTML =
-          this.gameController.level.golds;
+        this.updateGoldAmount();
         const width = 80;
         let newTower = new TowerWithTarget(
           this.gameController,
@@ -125,8 +122,8 @@ export class UIController {
           this.currentSelectedSpot.y,
           width,
           (width * 231) / 120,
-          500,
-          10,
+          600,
+          15,
           1.2,
           [
             window.imageController.animations.policemanIdle,
@@ -142,6 +139,29 @@ export class UIController {
       }
     };
 
+    //#endregion
+
+    //#region Upgrade menu
+    document.getElementById("sell").onclick = () => {
+      //remove tower from the game controller towers
+      let index = this.gameController.towers.indexOf(
+        this.currentSelectedSpot.tower
+      );
+      if (index > -1) {
+        this.gameController.towers.splice(index, 1);
+
+        //remove the reference of the spot
+        this.currentSelectedSpot.tower = null;
+        //play sound
+        window.audioController.play("buy_sell");
+        //close menu
+        this.closeUpgradeMenu();
+
+        //Add golds & update
+        this.gameController.level.golds += 10;
+        this.updateGoldAmount();
+      }
+    };
     //#endregion
 
     //#region Spot click
@@ -240,6 +260,11 @@ export class UIController {
   closeUpgradeMenu() {
     document.getElementById("upgradeMenu").classList.add("hidden");
     document.getElementById("hud").style.display = "none";
+  }
+
+  updateGoldAmount() {
+    document.getElementById("goldAmount").innerHTML =
+      this.gameController.level.golds;
   }
 }
 

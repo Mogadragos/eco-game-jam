@@ -70,6 +70,16 @@ export const levelsJSON = [
         },
       },
       {
+        timing: 59,
+        enemies: {
+          cooldown: 0.2,
+          number: 1,
+          health: 100,
+          speed: 0.08,
+          gold: 50,
+        },
+      },
+      {
         timing: 60,
         enemies: {
           cooldown: 0.2,
@@ -80,13 +90,23 @@ export const levelsJSON = [
         },
       },
       {
-        timing: 59,
+        timing: 80,
         enemies: {
-          cooldown: 0.2,
-          number: 1,
-          health: 100,
-          speed: 0.08,
-          gold: 50,
+          cooldown: 0.1,
+          number: 40,
+          health: 10,
+          speed: 0.15,
+          gold: 5,
+        },
+      },
+      {
+        timing: 100,
+        enemies: {
+          cooldown: 0.3,
+          number: 25,
+          health: 10,
+          speed: 0.25,
+          gold: 10,
         },
       },
     ],
@@ -176,6 +196,26 @@ export const levelsJSON = [
           health: 20,
           speed: 0.1,
           gold: 8,
+        },
+      },
+      {
+        timing: 80,
+        enemies: {
+          cooldown: 0.1,
+          number: 30,
+          health: 10,
+          speed: 0.25,
+          gold: 10,
+        },
+      },
+      {
+        timing: 80,
+        enemies: {
+          cooldown: 0.1,
+          number: 2,
+          health: 100,
+          speed: 0.08,
+          gold: 50,
         },
       },
     ],
