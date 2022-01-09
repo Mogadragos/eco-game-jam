@@ -11,8 +11,17 @@ export class Enemy extends Entity {
   killed;
   gold;
 
-  constructor(ctx, road, maxHealth, speed, gold) {
-    super(ctx, -10, -10, 30, 50, [window.imageController.animations.enemy]);
+  constructor(ctx, road, maxHealth, speed, gold, width = 80) {
+    super(
+      ctx,
+      -10,
+      -10,
+      width,
+      width,
+      Math.PI / 2,
+      [window.imageController.animations.enemy],
+      0.2
+    );
     this.maxHealth = maxHealth;
     this.health = maxHealth;
     this.road = road;
@@ -35,7 +44,10 @@ export class Enemy extends Entity {
       return;
     }
 
+    super.update(dt);
+
     this.aliveTime += dt;
+
     this.positionTime += dt * this.speed;
     const position = this.road.getPosition(this.positionTime);
     if (position.out) {

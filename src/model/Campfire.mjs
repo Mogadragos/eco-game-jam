@@ -7,9 +7,20 @@ export class Campfire extends Tower {
   constructor(gameController, ctx, x, y) {
     const range = 300,
       damage = 1;
-    super(gameController, ctx, x, y, range, damage, 0.4, [
-      window.imageController.animations.campfire,
-    ]);
+    super(
+      gameController,
+      ctx,
+      x,
+      y,
+      90,
+      123,
+      0,
+      range,
+      damage,
+      0.4,
+      [window.imageController.animations.campfire],
+      0.1
+    );
 
     this.maxRangeFullDamage = 0.25 * range;
     this.damageMaxRange = 0.25 * damage;

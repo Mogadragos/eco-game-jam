@@ -63,15 +63,18 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 50;
+        const width = 80;
         let newTower = new TowerWithTarget(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
           this.currentSelectedSpot.x,
           this.currentSelectedSpot.y,
+          width,
+          (width * 181) / 120,
           250,
           2,
           0.5,
-          [window.imageController.animations.volunteer]
+          [window.imageController.animations.volunteerIdle]
         );
 
         this.currentSelectedSpot.tower = newTower;
@@ -105,15 +108,18 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 200) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 200;
+        const width = 80;
         let newTower = new TowerWithTarget(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
           this.currentSelectedSpot.x,
           this.currentSelectedSpot.y,
+          width,
+          (width * 231) / 120,
           500,
           10,
           1.2,
-          [window.imageController.animations.policeman]
+          [window.imageController.animations.policemanIdle]
         );
 
         this.currentSelectedSpot.tower = newTower;

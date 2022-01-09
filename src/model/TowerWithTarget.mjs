@@ -8,12 +8,26 @@ export class TowerWithTarget extends Tower {
     ctx,
     x,
     y,
+    width,
+    height,
     range,
     damage,
     reloadTime,
     allAnimations
   ) {
-    super(gameController, ctx, x, y, range, damage, reloadTime, allAnimations);
+    super(
+      gameController,
+      ctx,
+      x,
+      y,
+      width,
+      height,
+      Math.PI / 2,
+      range,
+      damage,
+      reloadTime,
+      allAnimations
+    );
     this.target = null;
   }
 

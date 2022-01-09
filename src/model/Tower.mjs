@@ -13,12 +13,16 @@ export class Tower extends Entity {
     ctx,
     x,
     y,
+    width,
+    height,
+    initialRotation,
     range,
     damage,
     reloadTime,
-    allAnimations
+    allAnimations,
+    spriteTime = 0
   ) {
-    super(ctx, x, y, 30, 30, allAnimations);
+    super(ctx, x, y, width, height, initialRotation, allAnimations, spriteTime);
 
     this.gameController = gameController;
     this.range = range;
@@ -34,6 +38,7 @@ export class Tower extends Entity {
   }
 
   update(dt) {
+    super.update(dt);
     if (!this.shootReady) {
       this.time += dt;
       if (!(this.time < this.reloadTime)) this.shootReady = true;

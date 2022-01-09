@@ -5,7 +5,7 @@ export class Spot extends Entity {
   radius;
 
   constructor(ctx, x, y) {
-    super(ctx, x, y, 80, 80, [window.imageController.animations.spot]);
+    super(ctx, x, y, 80, 80);
 
     this.tower = null;
     this.radius = 80;

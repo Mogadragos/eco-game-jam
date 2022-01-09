@@ -12,13 +12,12 @@ export class Level {
 
   cooldown;
 
-  constructor(background, roads, spots, waves, nbTurtles, startGoldAmount) {
+  constructor(background, roads, spots, waves, nbTurtles) {
     this.background = background;
     this.roads = roads;
     this.spots = spots;
     this.waves = waves;
     this.nbTurtles = nbTurtles;
-    this.golds = startGoldAmount;
 
     this.enemiesCtx = document.getElementById("enemies").getContext("2d");
     this.time = 0;
@@ -33,6 +32,8 @@ export class Level {
     for (let spot of this.spots) {
       spot.tower = null;
     }
+
+    this.golds = 100;
   }
 
   init() {
@@ -42,7 +43,7 @@ export class Level {
     const ctxRoads = document.getElementById("roads").getContext("2d");
 
     ctxRoads.strokeStyle = "#9cec5b";
-    ctxRoads.lineWidth = 40;
+    ctxRoads.lineWidth = 50;
     ctxRoads.lineCap = "round";
 
     for (const road of this.roads) {
