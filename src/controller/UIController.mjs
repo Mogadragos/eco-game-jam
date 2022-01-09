@@ -111,7 +111,7 @@ export class UIController {
     //#endregion
 
     //#region Upgrade menu
-    document.getElementById("benevole").onclick = () => {
+    document.getElementById("volunteer").onclick = () => {
       console.log(this.gameController.level);
       if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
         this.gameController.level.golds -= 50;
