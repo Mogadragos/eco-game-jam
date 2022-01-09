@@ -77,7 +77,6 @@ export class Level {
             return new Enemy(
               this.enemiesCtx,
               this.roads[0],
-              "",
               this.waves[0].enemies.health,
               this.waves[0].enemies.speed,
               this.waves[0].enemies.golds

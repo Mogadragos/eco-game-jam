@@ -8,8 +8,17 @@ export class Tower extends Entity {
   time;
   shootReady;
 
-  constructor(gameController, ctx, x, y, range, damage, reloadTime, sprite) {
-    super(ctx, x, y, 30, 30, sprite);
+  constructor(
+    gameController,
+    ctx,
+    x,
+    y,
+    range,
+    damage,
+    reloadTime,
+    allAnimations
+  ) {
+    super(ctx, x, y, 30, 30, allAnimations);
 
     this.gameController = gameController;
     this.range = range;

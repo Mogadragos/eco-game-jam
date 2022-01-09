@@ -6,6 +6,7 @@ import { Road } from "./model/Road.mjs";
 import { Spot } from "./model/Spot.mjs";
 import { Wave } from "./model/Wave.mjs";
 import { levelsJSON } from "./datas/levels.js";
+import { ImageController } from "./controller/imageController.mjs";
 
 const width = 1920;
 const height = 1080;
@@ -29,7 +30,7 @@ function loadLevels(canvases) {
     });
 
     let levelSpots = levelsJSON[index].spots.map((spot) => {
-      return new Spot(canvases.spots.getContext("2d"), spot.x, spot.y, "");
+      return new Spot(canvases.spots.getContext("2d"), spot.x, spot.y);
     });
     let levelWaves = levelsJSON[index].waves.map((wave) => {
       return new Wave(wave.timing, wave.enemies);
@@ -60,22 +61,38 @@ function getCanvases() {
 
 const audioController = new AudioController();
 
+window.imageController = new ImageController();
+
 async function init() {
-  await audioController.init(
-    [
-      {
-        name: "sample",
-        url: "./assets/sample-9s.mp3",
-        sound: true,
-      },
-      {
-        name: "ambient",
-        url: "./assets/skyrim-main-theme-w-mp3-link.mp3",
-        loop: true,
-      },
-    ],
-    "ambient"
+  const promises = [];
+  promises.push(
+    audioController.init(
+      [
+        {
+          name: "sample",
+          url: "./assets/sample-9s.mp3",
+          sound: true,
+        },
+        {
+          name: "ambient",
+          url: "./assets/skyrim-main-theme-w-mp3-link.mp3",
+          loop: true,
+        },
+      ],
+      "ambient"
+    )
   );
+
+  promises.push(
+    imageController.init([
+      {
+        name: "enemy",
+        sprites: ["./assets/sprites/red.png"],
+      },
+    ])
+  );
+
+  await Promise.all(promises);
 }
 
 window.onload = () => {

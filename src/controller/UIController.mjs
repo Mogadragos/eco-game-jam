@@ -51,7 +51,7 @@ export class UIController {
     //#endregion
 
     //#region Buy menu
-    document.getElementById("benevole").onclick = () => {
+    document.getElementById("volunteer").onclick = () => {
       console.log(this.gameController.level);
       if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
         this.gameController.level.golds -= 50;
@@ -63,7 +63,7 @@ export class UIController {
           250,
           2,
           0.5,
-          ""
+          [window.imageController.animations.volunteer]
         );
 
         this.currentSelectedSpot.tower = newTower;
@@ -99,7 +99,7 @@ export class UIController {
           500,
           10,
           1.2,
-          ""
+          [window.imageController.animations.policeman]
         );
 
         this.currentSelectedSpot.tower = newTower;

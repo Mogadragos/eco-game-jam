@@ -45,11 +45,11 @@ const files = [
 
 // Installing Service Worker
 self.addEventListener("install", (e) => {
-  console.log("[Service Worker] Install");
+  console.warn("[Service Worker] Install");
   e.waitUntil(
     (async () => {
       const cache = await caches.open(cacheName);
-      console.log("[Service Worker] Caching all files");
+      console.warn("[Service Worker] Caching all files");
       //await cache.addAll(files);
     })()
   );
@@ -63,7 +63,7 @@ self.addEventListener("fetch", (e) => {
       if (r) return r;
       const response = await fetch(e.request);
       const cache = await caches.open(cacheName);
-      //console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+      //console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
       //cache.put(e.request, response.clone());
       return response;
     })()

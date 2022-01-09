@@ -11,8 +11,8 @@ export class Enemy extends Entity {
   killed;
   gold;
 
-  constructor(ctx, road, sprite, maxHealth, speed, gold) {
-    super(ctx, -10, -10, 30, 50, sprite);
+  constructor(ctx, road, maxHealth, speed, gold) {
+    super(ctx, -10, -10, 30, 50, [window.imageController.animations.enemy]);
     this.maxHealth = maxHealth;
     this.health = maxHealth;
     this.road = road;

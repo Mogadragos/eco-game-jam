@@ -35,8 +35,9 @@ export class AudioController {
     for (const track of tracks) {
       promises.push(this.loadTrack(track));
     }
-    await Promise.all(promises);
-    this.play(menuMusic);
+    return Promise.all(promises).then(() => {
+      this.play(menuMusic);
+    });
   }
 
   play(trackName) {
@@ -73,13 +74,13 @@ export class AudioController {
               resolve();
             },
             function (e) {
-              console.log("Error decoding audio data:" + e);
+              console.error("Error decoding audio data:" + e);
               resolve();
             }
           );
         } else {
-          console.log(
-            "Audio didn't load successfully; error code:" + request.statusText
+          console.error(
+            "Audio didn't load successfully; error code: " + request.statusText
           );
           resolve();
         }

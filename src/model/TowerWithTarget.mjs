@@ -3,8 +3,17 @@ import { Tower } from "./Tower.mjs";
 export class TowerWithTarget extends Tower {
   target;
 
-  constructor(gameController, ctx, x, y, range, damage, reloadTime, sprite) {
-    super(gameController, ctx, x, y, range, damage, reloadTime, sprite);
+  constructor(
+    gameController,
+    ctx,
+    x,
+    y,
+    range,
+    damage,
+    reloadTime,
+    allAnimations
+  ) {
+    super(gameController, ctx, x, y, range, damage, reloadTime, allAnimations);
     this.target = null;
   }
 
