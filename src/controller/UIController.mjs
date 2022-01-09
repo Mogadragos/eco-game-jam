@@ -72,8 +72,8 @@ export class UIController {
           this.currentSelectedSpot.y,
           width,
           (width * 181) / 120,
-          250,
-          2,
+          300,
+          4,
           0.5,
           [
             window.imageController.animations.volunteerIdle,
@@ -122,8 +122,8 @@ export class UIController {
           this.currentSelectedSpot.y,
           width,
           (width * 231) / 120,
-          500,
-          10,
+          600,
+          15,
           1.2,
           [
             window.imageController.animations.policemanIdle,
