@@ -1,4 +1,4 @@
-import { Tower } from "../model/Tower.mjs";
+import { TowerWithTarget } from "../model/TowerWithTarget.mjs";
 
 const width = 1920;
 const height = 1080;
@@ -52,7 +52,7 @@ export class UIController {
     //#region create tower
     document.getElementById("benevole").onclick = () => {
       if (this.currentSelectedSpot) {
-        let newTower = new Tower(
+        let newTower = new TowerWithTarget(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
           this.currentSelectedSpot.x,

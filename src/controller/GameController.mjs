@@ -1,5 +1,3 @@
-import { TowerWithTarget } from "../model/TowerWithTarget.mjs";
-
 export class GameController {
   // FPS
   then;
