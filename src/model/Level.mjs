@@ -42,7 +42,7 @@ export class Level {
     document.getElementById("background").src = "./assets/" + this.background;
     const ctxRoads = document.getElementById("roads").getContext("2d");
 
-    ctxRoads.strokeStyle = "#9cec5b";
+    ctxRoads.strokeStyle = "#a3a2af";
     ctxRoads.lineWidth = 50;
     ctxRoads.lineCap = "round";
 
