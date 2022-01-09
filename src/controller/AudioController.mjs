@@ -9,8 +9,8 @@ export class AudioController {
   musicSource;
 
   constructor() {
-    this.musicOn = true;
-    this.soundOn = true;
+    this.musicOn = localStorage.getItem("musicOn") < 1;
+    this.soundOn = localStorage.getItem("soundOn") < 1;
 
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     this.audioCtx = new AudioContext();
@@ -20,6 +20,9 @@ export class AudioController {
     this.soundGain = this.soundCtx.createGain();
     this.soundGain.connect(this.soundCtx.destination);
     this.tracks = {};
+
+    this.toggleMusic();
+    this.toggleSound();
   }
 
   async init(tracks, menuMusic) {
@@ -101,10 +104,12 @@ export class AudioController {
       document.getElementById("music-off").style.display = "none";
       document.getElementById("music-on").style.display = "";
       this.audioGain.gain.setValueAtTime(1, this.audioCtx.currentTime);
+      localStorage.setItem("musicOn", "1");
     } else {
       document.getElementById("music-on").style.display = "none";
       document.getElementById("music-off").style.display = "";
       this.audioGain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+      localStorage.setItem("musicOn", "0");
     }
   }
 
@@ -115,10 +120,12 @@ export class AudioController {
       document.getElementById("sound-off").style.display = "none";
       document.getElementById("sound-on").style.display = "";
       this.soundGain.gain.setValueAtTime(1, this.soundCtx.currentTime);
+      localStorage.setItem("soundOn", "1");
     } else {
       document.getElementById("sound-on").style.display = "none";
       document.getElementById("sound-off").style.display = "";
       this.soundGain.gain.setValueAtTime(0, this.soundCtx.currentTime);
+      localStorage.setItem("soundOn", "0");
     }
   }
 }

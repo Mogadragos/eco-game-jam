@@ -3,22 +3,51 @@ const cacheName = "turtles-v0";
 const files = [
   "/assets/icons/icon-16x16.png",
   "/assets/icons/icon-32x32.png",
-  "/assets/icons/icon-60x60.png",
-  "/assets/icons/icon-76x76.png",
+  "/assets/icons/icon-96x96.png",
   "/assets/icons/icon-120x120.png",
-  "/assets/icons/icon-152x152.png",
-  "/assets/icons/icon-180x180.png",
-  "/assets/icons/icon-192x192.png",
-  "/assets/icons/icon-384x384.png",
+
+  "/assets/sounds/BGM.mp3",
+  "/assets/sounds/Menu.mp3",
+  "/assets/sounds/SFX_1.mp3",
+  "/assets/sounds/SFX_2.mp3",
+  "/assets/sounds/SFX_3.mp3",
+  "/assets/sounds/SFX_4.mp3",
+  "/assets/sounds/SFX_5.mp3",
+  "/assets/sounds/SFX_6.mp3",
+
+  "/assets/sprites/Braconnier_1.png",
+  "/assets/sprites/Braconnier_2.png",
+  "/assets/sprites/Braconnier_3.png",
+  "/assets/sprites/Braconnier_4.png",
+  "/assets/sprites/Flame_1.png",
+  "/assets/sprites/Flame_2.png",
+  "/assets/sprites/Flame_3.png",
+  "/assets/sprites/Flame_4.png",
+  "/assets/sprites/Flame_5.png",
+  "/assets/sprites/Flame_6.png",
+  "/assets/sprites/Police_1.png",
+  "/assets/sprites/Police_2.png",
+  "/assets/sprites/Seashepherd_1.png",
+  "/assets/sprites/Seashepherd_2.png",
+  "/assets/sprites/Tortue_1.png",
+  "/assets/sprites/Tortue_2.png",
+  "/assets/sprites/Tortue_3.png",
+  "/assets/sprites/Tortue_4.png",
+  "/assets/sprites/Tortue_dos_1.png",
+  "/assets/sprites/Tortue_dos_2.png",
 
   "/assets/background-1.png",
   "/assets/BaksoSapi.otf",
-  "/assets/sample-9s.mp3",
-  "/assets/skyrim-main-theme-w-mp3-link.mp3",
+  "/assets/Chemin_texture.png",
 
   "/src/controller/AudioController.mjs",
   "/src/controller/GameController.mjs",
+  "/src/controller/ImageController.mjs",
   "/src/controller/UIController.mjs",
+
+  "/src/datas/animations.js",
+  "/src/datas/levels.js",
+  "/src/datas/sounds.js",
 
   "/src/model/Campfire.mjs",
   "/src/model/Enemy.mjs",
@@ -28,6 +57,8 @@ const files = [
   "/src/model/Spot.mjs",
   "/src/model/Tower.mjs",
   "/src/model/TowerWithTarget.mjs",
+  "/src/model/Turtle.mjs",
+  "/src/model/Wave.mjs",
 
   "/src/main.js",
 
@@ -40,6 +71,7 @@ const files = [
   "/style/style.css",
   "/style/variables.css",
 
+  "/favicon.ico",
   "/index.html",
 ];
 
@@ -50,7 +82,7 @@ self.addEventListener("install", (e) => {
     (async () => {
       const cache = await caches.open(cacheName);
       console.warn("[Service Worker] Caching all files");
-      //await cache.addAll(files);
+      await cache.addAll(files);
     })()
   );
 });
@@ -63,8 +95,8 @@ self.addEventListener("fetch", (e) => {
       if (r) return r;
       const response = await fetch(e.request);
       const cache = await caches.open(cacheName);
-      //console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
-      //cache.put(e.request, response.clone());
+      console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
+      cache.put(e.request, response.clone());
       return response;
     })()
   );
