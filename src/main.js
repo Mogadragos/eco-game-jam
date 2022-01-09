@@ -1,12 +1,13 @@
 import { AudioController } from "./controller/AudioController.mjs";
 import { GameController } from "./controller/GameController.mjs";
 import { UIController } from "./controller/UIController.mjs";
+import { ImageController } from "./controller/imageController.mjs";
 import { Level } from "./model/Level.mjs";
 import { Road } from "./model/Road.mjs";
 import { Spot } from "./model/Spot.mjs";
 import { Wave } from "./model/Wave.mjs";
 import { levelsJSON } from "./datas/levels.js";
-import { ImageController } from "./controller/imageController.mjs";
+import { animationsJSON } from "./datas/animations.js";
 
 const width = 1920;
 const height = 1080;
@@ -83,14 +84,7 @@ async function init() {
     )
   );
 
-  promises.push(
-    window.imageController.init([
-      {
-        name: "enemy",
-        sprites: ["./assets/sprites/red.png"],
-      },
-    ])
-  );
+  promises.push(window.imageController.init(animationsJSON));
 
   await Promise.all(promises);
 }
