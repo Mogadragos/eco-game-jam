@@ -191,10 +191,16 @@ export class UIController {
     //#region Spot click
     document.getElementById("towers").onclick = (e) => {
       for (const spot of this.gameController.level.spots) {
+        let canvasWidth = document.getElementById("roads").offsetWidth;
+        let canvasHeight = document.getElementById("roads").offsetHeight;
+
+        let x = e.clientX - (window.innerWidth - canvasWidth) / 2;
+        let y = e.clientY - (window.innerHeight - canvasHeight) / 2;
+
         let distance = distanceBetween(
           {
-            x: (e.clientX / window.innerWidth) * width,
-            y: (e.clientY / window.innerHeight) * height,
+            x: (x / canvasWidth) * width,
+            y: (y / canvasHeight) * height,
           },
           {
             x: spot.x,
