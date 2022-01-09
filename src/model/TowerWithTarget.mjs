@@ -21,13 +21,25 @@ export class TowerWithTarget extends Tower {
     return target;
   }
 
-  update() {
-    if (!this.target || this.getDistance(this.target) > this.range) {
+  update(dt) {
+    super.update(dt);
+
+    if (
+      !this.target ||
+      this.target.killed ||
+      this.getDistance(this.target) > this.range
+    ) {
       this.target = this.getTarget();
       if (!this.target) return;
     }
 
     this.rotation = Math.atan2(this.target.y - this.y, this.target.x - this.x);
-    // Attack
+
+    if (this.shootReady) {
+      // Attack
+      this.target.takeDamage(this.damage);
+      this.shootReady = false;
+      this.time = 0;
+    }
   }
 }
