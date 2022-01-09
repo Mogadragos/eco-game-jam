@@ -1,5 +1,5 @@
 // Files to cache
-const cacheName = "turtles-v0";
+const cacheName = "turtles-v1";
 const files = [
   "/assets/icons/icon-16x16.png",
   "/assets/icons/icon-32x32.png",
@@ -37,6 +37,7 @@ const files = [
   "/assets/sprites/Tortue_dos_2.png",
 
   "/assets/background-1.png",
+  "/assets/background-2.png",
   "/assets/BaksoSapi.otf",
   "/assets/Chemin_texture.png",
 
@@ -53,6 +54,7 @@ const files = [
   "/src/model/Enemy.mjs",
   "/src/model/Entity.mjs",
   "/src/model/Level.mjs",
+  "/src/model/PathDrawer.mjs",
   "/src/model/Road.mjs",
   "/src/model/Spot.mjs",
   "/src/model/Tower.mjs",
@@ -81,8 +83,8 @@ self.addEventListener("install", (e) => {
   e.waitUntil(
     (async () => {
       const cache = await caches.open(cacheName);
-      console.warn("[Service Worker] Caching all files");
-      await cache.addAll(files);
+      //console.warn("[Service Worker] Caching all files");
+      //await cache.addAll(files);
     })()
   );
 });
@@ -95,8 +97,8 @@ self.addEventListener("fetch", (e) => {
       if (r) return r;
       const response = await fetch(e.request);
       const cache = await caches.open(cacheName);
-      console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
-      cache.put(e.request, response.clone());
+      //console.warn(`[Service Worker] Caching new resource: ${e.request.url}`);
+      //cache.put(e.request, response.clone());
       return response;
     })()
   );

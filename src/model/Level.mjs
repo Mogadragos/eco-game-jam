@@ -1,4 +1,5 @@
 import { Enemy } from "./Enemy.mjs";
+import { DrawPath } from "./PathDrawer.mjs";
 
 export class Level {
   background;
@@ -48,17 +49,7 @@ export class Level {
 
     for (const road of this.roads) {
       for (const curve of road.curves) {
-        ctxRoads.beginPath();
-        ctxRoads.moveTo(curve.x1, curve.y1);
-        ctxRoads.bezierCurveTo(
-          curve.x2,
-          curve.y2,
-          curve.x3,
-          curve.y3,
-          curve.x4,
-          curve.y4
-        );
-        ctxRoads.stroke();
+        DrawPath(ctxRoads, curve, "../../assets/Chemin_texture.png");
       }
     }
 
