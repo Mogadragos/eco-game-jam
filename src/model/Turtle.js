@@ -1,4 +1,4 @@
-import { Entity } from "./Entity.mjs";
+import { Entity } from "./Entity.js";
 
 export class Turtle extends Entity {
   killed;

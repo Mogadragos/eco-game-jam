@@ -1,5 +1,5 @@
-import { Enemy } from "./Enemy.mjs";
-import { DrawPath } from "./PathDrawer.mjs";
+import { Enemy } from "./Enemy.js";
+import { DrawPath } from "./PathDrawer.js";
 
 export class Level {
   background;
@@ -49,7 +49,7 @@ export class Level {
 
     for (const road of this.roads) {
       for (const curve of road.curves) {
-        DrawPath(ctxRoads, curve, "../../assets/Chemin_texture.png");
+        DrawPath(ctxRoads, curve, "./assets/Chemin_texture.png");
       }
     }
 

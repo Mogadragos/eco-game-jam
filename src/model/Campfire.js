@@ -1,4 +1,4 @@
-import { Tower } from "./Tower.mjs";
+import { Tower } from "./Tower.js";
 
 export class Campfire extends Tower {
   maxRangeFullDamage;

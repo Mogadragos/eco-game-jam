@@ -1,4 +1,4 @@
-import { Turtle } from "../model/Turtle.mjs";
+import { Turtle } from "../model/Turtle.js";
 
 export class GameController {
   // FPS

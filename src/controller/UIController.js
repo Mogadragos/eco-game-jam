@@ -1,5 +1,5 @@
-import { TowerWithTarget } from "../model/TowerWithTarget.mjs";
-import { Campfire } from "../model/Campfire.mjs";
+import { TowerWithTarget } from "../model/TowerWithTarget.js";
+import { Campfire } from "../model/Campfire.js";
 
 const width = 1920;
 const height = 1080;
