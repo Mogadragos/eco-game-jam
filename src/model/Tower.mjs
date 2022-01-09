@@ -5,6 +5,8 @@ export class Tower extends Entity {
   range;
   damage;
   reloadTime;
+  time;
+  shootReady;
 
   constructor(gameManager, ctx, x, y, range, damage, reloadTime, sprite) {
     super(ctx, x, y, 30, 30, sprite);
@@ -12,13 +14,21 @@ export class Tower extends Entity {
     this.gameManager = gameManager;
     this.range = range;
     this.damage = damage;
-    this.reloadTime = reloadTime;
+    this.time = this.reloadTime = reloadTime;
+    this.shootReady = true;
   }
 
   getDistance(entity) {
     const x = this.x - entity.x;
     const y = this.y - entity.y;
     return Math.sqrt(x * x + y * y);
+  }
+
+  update(dt) {
+    if (!this.shootReady) {
+      this.time += dt;
+      if (!(this.time < this.reloadTime)) this.shootReady = true;
+    }
   }
 
   render() {
