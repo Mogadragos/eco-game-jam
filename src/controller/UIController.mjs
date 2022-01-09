@@ -63,6 +63,8 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 50;
+        document.getElementById("goldAmount").innerHTML =
+          this.gameController.level.golds;
         const width = 80;
         let newTower = new TowerWithTarget(
           this.gameController,
@@ -92,6 +94,8 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 100) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 100;
+        document.getElementById("goldAmount").innerHTML =
+          this.gameController.level.golds;
         let newTower = new Campfire(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
@@ -111,6 +115,8 @@ export class UIController {
       if (this.currentSelectedSpot && this.gameController.level.golds >= 200) {
         window.audioController.play("buy_sell");
         this.gameController.level.golds -= 200;
+        document.getElementById("goldAmount").innerHTML =
+          this.gameController.level.golds;
         const width = 80;
         let newTower = new TowerWithTarget(
           this.gameController,
