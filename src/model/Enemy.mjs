@@ -9,8 +9,9 @@ export class Enemy extends Entity {
   positionTime;
   hasTurtle;
   killed;
+  gold;
 
-  constructor(ctx, road, sprite, maxHealth, speed) {
+  constructor(ctx, road, sprite, maxHealth, speed, gold) {
     super(ctx, -10, -10, 30, 50, sprite);
     this.maxHealth = maxHealth;
     this.health = maxHealth;
@@ -21,6 +22,7 @@ export class Enemy extends Entity {
     this.positionTime = 0;
     this.hasTurtle = false;
     this.killed = false;
+    this.gold = gold;
   }
 
   takeDamage(damage) {
@@ -29,7 +31,7 @@ export class Enemy extends Entity {
 
   update(dt) {
     if (!(this.health > 0)) {
-      this.killed = true;
+      this.die();
       return;
     }
 
@@ -80,5 +82,10 @@ export class Enemy extends Entity {
     this.ctx.lineTo(this.x - healthBarSizeMax / 2 + healthBarSize, this.y - 40);
     this.ctx.closePath();
     this.ctx.stroke();
+  }
+
+  die() {
+    this.killed = true;
+    //todo: give gold
   }
 }

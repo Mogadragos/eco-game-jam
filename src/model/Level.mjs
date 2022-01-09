@@ -5,17 +5,19 @@ export class Level {
   roads;
   spots;
   waves;
+  golds;
 
   enemiesCtx;
   time;
 
   cooldown;
 
-  constructor(background, roads, spots, waves) {
+  constructor(background, roads, spots, waves, startGoldAmount) {
     this.background = background;
     this.roads = roads;
     this.spots = spots;
     this.waves = waves;
+    this.golds = startGoldAmount;
 
     this.enemiesCtx = document.getElementById("enemies").getContext("2d");
     this.time = 0;
@@ -26,6 +28,10 @@ export class Level {
 
   reset() {
     this.nbEnemies = 0;
+
+    for (let spot of this.spots) {
+      spot.tower = null;
+    }
   }
 
   init() {
@@ -73,7 +79,8 @@ export class Level {
               this.roads[0],
               "",
               this.waves[0].enemies.health,
-              this.waves[0].enemies.speed
+              this.waves[0].enemies.speed,
+              this.waves[0].enemies.golds
             );
           }
         } else {

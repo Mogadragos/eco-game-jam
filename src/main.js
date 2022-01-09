@@ -34,8 +34,17 @@ function loadLevels(canvases) {
     let levelWaves = levelsJSON[index].waves.map((wave) => {
       return new Wave(wave.timing, wave.enemies);
     });
+    let startingGoldAmount = levelsJSON[index].startingGoldAmount;
 
-    levels.push(new Level(levelImage, levelRoads, levelSpots, levelWaves));
+    levels.push(
+      new Level(
+        levelImage,
+        levelRoads,
+        levelSpots,
+        levelWaves,
+        startingGoldAmount
+      )
+    );
   }
 
   return levels;

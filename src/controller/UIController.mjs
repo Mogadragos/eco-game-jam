@@ -1,4 +1,5 @@
 import { TowerWithTarget } from "../model/TowerWithTarget.mjs";
+import { Campfire } from "../model/Campfire.mjs";
 
 const width = 1920;
 const height = 1080;
@@ -49,9 +50,11 @@ export class UIController {
     };
     //#endregion
 
-    //#region create tower
+    //#region Buy menu
     document.getElementById("benevole").onclick = () => {
-      if (this.currentSelectedSpot) {
+      console.log(this.gameController.level);
+      if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
+        this.gameController.level.golds -= 50;
         let newTower = new TowerWithTarget(
           this.gameController,
           this.gameController.canvasesDict.towers.getContext("2d"),
@@ -68,9 +71,106 @@ export class UIController {
         this.closeBuyMenu();
       }
     };
+
+    document.getElementById("campfire").onclick = () => {
+      if (this.currentSelectedSpot && this.gameController.level.golds >= 100) {
+        this.gameController.level.golds -= 100;
+        let newTower = new Campfire(
+          this.gameController,
+          this.gameController.canvasesDict.towers.getContext("2d"),
+          this.currentSelectedSpot.x,
+          this.currentSelectedSpot.y
+        );
+
+        this.currentSelectedSpot.tower = newTower;
+        this.gameController.addTower(newTower);
+        this.closeBuyMenu();
+      }
+    };
+
+    document.getElementById("policeman").onclick = () => {
+      if (this.currentSelectedSpot && this.gameController.level.golds >= 200) {
+        this.gameController.level.golds -= 200;
+        let newTower = new TowerWithTarget(
+          this.gameController,
+          this.gameController.canvasesDict.towers.getContext("2d"),
+          this.currentSelectedSpot.x,
+          this.currentSelectedSpot.y,
+          500,
+          10,
+          1.2,
+          ""
+        );
+
+        this.currentSelectedSpot.tower = newTower;
+        this.gameController.addTower(newTower);
+        this.closeBuyMenu();
+      }
+    };
+
     //#endregion
 
-    //#region Canvas on click
+    //#region Upgrade menu
+    document.getElementById("benevole").onclick = () => {
+      console.log(this.gameController.level);
+      if (this.currentSelectedSpot && this.gameController.level.golds >= 50) {
+        this.gameController.level.golds -= 50;
+        let newTower = new TowerWithTarget(
+          this.gameController,
+          this.gameController.canvasesDict.towers.getContext("2d"),
+          this.currentSelectedSpot.x,
+          this.currentSelectedSpot.y,
+          250,
+          2,
+          0.5,
+          ""
+        );
+
+        this.currentSelectedSpot.tower = newTower;
+        this.gameController.addTower(newTower);
+        this.closeBuyMenu();
+      }
+    };
+
+    document.getElementById("campfire").onclick = () => {
+      if (this.currentSelectedSpot && this.gameController.level.golds >= 100) {
+        this.gameController.level.golds -= 100;
+        let newTower = new Campfire(
+          this.gameController,
+          this.gameController.canvasesDict.towers.getContext("2d"),
+          this.currentSelectedSpot.x,
+          this.currentSelectedSpot.y
+        );
+
+        this.currentSelectedSpot.tower = newTower;
+        this.gameController.addTower(newTower);
+        this.closeBuyMenu();
+      }
+    };
+
+    document.getElementById("policeman").onclick = () => {
+      if (this.currentSelectedSpot && this.gameController.level.golds >= 200) {
+        this.gameController.level.golds -= 200;
+        let newTower = new TowerWithTarget(
+          this.gameController,
+          this.gameController.canvasesDict.towers.getContext("2d"),
+          this.currentSelectedSpot.x,
+          this.currentSelectedSpot.y,
+          500,
+          10,
+          1.2,
+          ""
+        );
+
+        this.currentSelectedSpot.tower = newTower;
+        this.gameController.addTower(newTower);
+        this.closeBuyMenu();
+      }
+    };
+
+    //#endregion
+
+    //#region Spot click
     document.getElementById("towers").onclick = (e) => {
       for (const spot of this.gameController.level.spots) {
         let distance = distanceBetween(
