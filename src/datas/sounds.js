@@ -37,7 +37,7 @@ export const soundsJSON = [
   {
     name: "alarm",
     url: "./assets/sounds/SFX_6.mp3",
-    loop: true,
+    loop: false,
     sound: true,
   },
 ];
