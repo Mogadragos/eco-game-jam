@@ -6,6 +6,8 @@ export class AudioController {
   soundCtx;
   tracks;
 
+  musicSource;
+
   constructor() {
     this.musicOn = true;
     this.soundOn = true;
@@ -25,9 +27,11 @@ export class AudioController {
     const btnSoundToggle = document.getElementById("toggleSound");
 
     btnMusicToggle.onclick = () => {
+      window.audioController.play("click");
       this.toggleMusic();
     };
     btnSoundToggle.onclick = () => {
+      window.audioController.play("click");
       this.toggleSound();
     };
 
@@ -48,7 +52,8 @@ export class AudioController {
         source = this.soundCtx.createBufferSource();
         source.connect(this.soundGain);
       } else {
-        source = this.audioCtx.createBufferSource();
+        if (this.musicSource) this.musicSource.stop();
+        this.musicSource = source = this.audioCtx.createBufferSource();
         source.connect(this.audioGain);
       }
       source.buffer = track.buffer;

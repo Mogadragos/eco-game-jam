@@ -8,6 +8,7 @@ import { Spot } from "./model/Spot.mjs";
 import { Wave } from "./model/Wave.mjs";
 import { levelsJSON } from "./datas/levels.js";
 import { animationsJSON } from "./datas/animations.js";
+import { soundsJSON } from "./datas/sounds.js";
 
 const width = 1920;
 const height = 1080;
@@ -63,29 +64,13 @@ function getCanvases() {
   return { roads, spots, enemies, towers };
 }
 
-const audioController = new AudioController();
+window.audioController = new AudioController();
 
 window.imageController = new ImageController();
 
 async function init() {
   const promises = [];
-  promises.push(
-    audioController.init(
-      [
-        {
-          name: "sample",
-          url: "./assets/sample-9s.mp3",
-          sound: true,
-        },
-        {
-          name: "ambient",
-          url: "./assets/skyrim-main-theme-w-mp3-link.mp3",
-          loop: true,
-        },
-      ],
-      "ambient"
-    )
-  );
+  promises.push(window.audioController.init(soundsJSON, "menu"));
 
   promises.push(window.imageController.init(animationsJSON));
 
