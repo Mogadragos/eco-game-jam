@@ -74,7 +74,10 @@ export class UIController {
           250,
           2,
           0.5,
-          [window.imageController.animations.volunteerIdle]
+          [
+            window.imageController.animations.volunteerIdle,
+            window.imageController.animations.volunteerShot,
+          ]
         );
 
         this.currentSelectedSpot.tower = newTower;
@@ -119,7 +122,10 @@ export class UIController {
           500,
           10,
           1.2,
-          [window.imageController.animations.policemanIdle]
+          [
+            window.imageController.animations.policemanIdle,
+            window.imageController.animations.policemanShot,
+          ]
         );
 
         this.currentSelectedSpot.tower = newTower;

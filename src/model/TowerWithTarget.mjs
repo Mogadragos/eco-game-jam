@@ -59,6 +59,7 @@ export class TowerWithTarget extends Tower {
     this.rotation = Math.atan2(this.target.y - this.y, this.target.x - this.x);
 
     if (this.shootReady) {
+      this.setAnimation(1, 0.05);
       // Attack
       this.target.takeDamage(this.damage);
       this.shootReady = false;

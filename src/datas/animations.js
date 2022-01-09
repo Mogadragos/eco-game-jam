@@ -25,11 +25,7 @@ export const animationsJSON = [
   },
   {
     name: "policemanShot",
-    sprites: [
-      "./assets/sprites/Police_1.png",
-      "./assets/sprites/Police_2.png",
-      "./assets/sprites/Police_1.png",
-    ],
+    sprites: ["./assets/sprites/Police_2.png"],
   },
   {
     name: "volunteerIdle",
@@ -37,11 +33,7 @@ export const animationsJSON = [
   },
   {
     name: "volunteerShot",
-    sprites: [
-      "./assets/sprites/Seashepherd_1.png",
-      "./assets/sprites/Seashepherd_2.png",
-      "./assets/sprites/Seashepherd_1.png",
-    ],
+    sprites: ["./assets/sprites/Seashepherd_2.png"],
   },
   {
     name: "turtleIdle",

@@ -7,8 +7,11 @@ export class Entity {
   width;
   height;
   rotation;
+  idle;
+  idleTime;
   allAnimations;
   animation;
+  isAnimation;
   currentSpriteTime;
   spriteTime;
   spriteIndex;
@@ -32,20 +35,40 @@ export class Entity {
     this.rotation = 0;
     this.currentSpriteTime = 0;
     this.allAnimations = allAnimations;
-    this.setAnimation(0, spriteTime);
+    this.isAnimation = false;
+    this.setIdle(0, spriteTime);
+  }
+
+  setIdle(index, spriteTime) {
+    if (this.allAnimations[index]) {
+      this.idle = this.animation = this.allAnimations[index];
+      this.idleTime = this.spriteTime = spriteTime;
+      this.spriteIndex = 0;
+      this.currentSpriteTime = 0;
+    }
   }
 
   setAnimation(index, spriteTime) {
-    this.animation = this.allAnimations[index];
-    this.spriteTime = spriteTime;
-    this.spriteIndex = 0;
-    this.currentSpriteTime = 0;
+    if (this.allAnimations[index]) {
+      this.isAnimation = true;
+      this.animation = this.allAnimations[index];
+      this.spriteTime = spriteTime;
+      this.spriteIndex = 0;
+      this.currentSpriteTime = 0;
+    }
   }
 
   nextSprite() {
     this.spriteIndex++;
     if (!(this.spriteIndex < this.animation.length)) {
       this.spriteIndex = 0;
+      if (this.isAnimation) {
+        this.isAnimation = false;
+        console.log(this.idle);
+        this.animation = this.idle;
+        this.spriteTime = this.idleTime;
+        this.currentSpriteTime = 0;
+      }
     }
   }
 
