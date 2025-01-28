@@ -1,4 +1,6 @@
-eco-game-jam
+# Protect the turtles !!
+
+https://mogador.itch.io/protect-the-turtles
 
 Co-creator: https://github.com/ScRalP
 
