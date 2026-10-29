@@ -1,7 +1,7 @@
 import { AudioController } from "./controller/AudioController.mjs";
 import { GameController } from "./controller/GameController.mjs";
 import { UIController } from "./controller/UIController.mjs";
-import { ImageController } from "./controller/imageController.mjs";
+import { ImageController } from "./controller/ImageController.mjs";
 import { Level } from "./model/Level.mjs";
 import { Road } from "./model/Road.mjs";
 import { Spot } from "./model/Spot.mjs";
