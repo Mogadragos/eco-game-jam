@@ -1,5 +1,5 @@
 // Files to cache
-const cacheName = "turtles-v1.1";
+const cacheName = "turtles-v1.2";
 const files = [
   "assets/icons/icon-16x16.png",
   "assets/icons/icon-32x32.png",
