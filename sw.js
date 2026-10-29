@@ -84,7 +84,19 @@ self.addEventListener("install", (e) => {
     (async () => {
       const cache = await caches.open(cacheName);
       console.warn("[Service Worker] Caching all files");
-      await cache.addAll(files);
+      try {
+        await cache.addAll(files);
+      } catch (err) {
+        console.error('sw: cache.addAll');
+        for (let i of files) {
+          try {
+            await cache.add(i);
+          } catch (err) {
+            console.warn('sw: cache.add', i);
+            console.warn(err);
+          }
+        }
+      }
     })()
   );
 });
